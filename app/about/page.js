@@ -27,7 +27,7 @@ export default async function Page() {
 
   const { error, data } = await getAboutPageData();
 
-  const { experience, stack, contactInfo } = data;
+  const { experience = [], stack, contactInfo } = data;
 
   return (
     <>

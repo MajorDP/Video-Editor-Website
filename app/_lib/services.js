@@ -1,7 +1,4 @@
-export const BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://video-editor-website.vercel.app/api"
-    : "http://localhost:3000/api";
+const BASE_URL = "/api";
 
 export async function getHomePageData() {
   const res = await fetch(`${BASE_URL}/homePage`);
