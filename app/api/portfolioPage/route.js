@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 const allEdits = [
   {
+    id: "edit-1",
     title: "Edit 1",
     type: "Youtube Edit",
     cat: [
@@ -13,6 +14,7 @@ const allEdits = [
     description: "Description of edit 1",
   },
   {
+    id: "edit-2",
     title: "Edit 2",
     type: "TikTok Edit",
     cat: [
@@ -24,6 +26,7 @@ const allEdits = [
     description: "Description of edit 2",
   },
   {
+    id: "edit-3",
     title: "Edit 3",
     type: "Youtube Edit",
     cat: [
@@ -35,6 +38,7 @@ const allEdits = [
     description: "Description of edit 3",
   },
   {
+    id: "edit-4",
     title: "Edit 4",
     type: "TikTok Edit",
     cat: [

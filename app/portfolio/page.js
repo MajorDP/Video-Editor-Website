@@ -25,8 +25,6 @@ export default async function Page() {
     return catsAcc;
   }, []);
 
-  console.log("categories:", categories);
-
   return (
     <>
       <main className="min-h-screen space-y-4">

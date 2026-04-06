@@ -1,24 +1,5 @@
 import { NextResponse } from "next/server";
 
-const stats = [
-  {
-    label: "Global Projects",
-    stat: "250+",
-  },
-  {
-    label: "Industry Awards",
-    stat: "2",
-  },
-  {
-    label: "Views Generated",
-    stat: "500k",
-  },
-  {
-    label: "Years of Experience",
-    stat: "5+",
-  },
-];
-
 const allEdits = [
   {
     id: "edit-1",
@@ -70,31 +51,6 @@ const allEdits = [
   },
 ];
 
-const testimonials = [
-  {
-    name: "John Johnas",
-    title: "CEO, MCDonalds",
-    description:
-      "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
-
-    img: "/heroImg.png",
-  },
-  {
-    name: "John Johnas2",
-    title: "CEO, MCDonalds",
-    description:
-      "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
-    img: "/heroImg.png",
-  },
-  {
-    name: "John Johnas3",
-    title: "CEO, MCDonalds",
-    description:
-      "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
-    img: "/heroImg.png",
-  },
-];
-
 const contactInfo = {
   email: "email@gmail.com",
   location: "NEON CITY, USA",
@@ -111,13 +67,17 @@ const contactInfo = {
   ],
 };
 
-export async function GET() {
+export async function GET(request, { params }) {
+  const { projectId } = await params;
   //TODO: LINK WITH ACTUAL DB
-  try {
-    const featuredEdits = allEdits.filter((edit) => edit.featured);
 
+  const projectData = allEdits.find(
+    (edit) => edit.id.toLowerCase().replace(/\s+/g, "-") === projectId,
+  );
+
+  try {
     return NextResponse.json({
-      data: { stats, featuredEdits, testimonials, contactInfo },
+      data: { projectData, contactInfo },
       error: null,
     });
   } catch (error) {

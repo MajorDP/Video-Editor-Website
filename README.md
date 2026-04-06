@@ -24,7 +24,12 @@ This website is a **portfolio platform designed to convert visitors into clients
 - **All Projects Section:** Display of all added projects. Filterable by categories. _Editable through admin page._
 - **Final CTA** Encourage users to take action (Initiate contact).
 
-### 3. Services Page (`/services`)
+### 3. Project Page (`/portfolio/[id]`)
+
+- **Short Hero Section** Added for design unity.
+- **Project Details** Showcases detailed information regarding project. _Editable through admin page._
+
+### 4. Services Page (`/services`)
 
 - **Short Hero Section** Added for design unity.
 - **Services Section:** List of offerings. Includes a short description of each service. _Editable through admin page._
@@ -32,7 +37,7 @@ This website is a **portfolio platform designed to convert visitors into clients
 - **How It Works Section:** Provides general work process summary for prospective clients.
 - **Final CTA** Encourage users to take action (Initiate contact).
 
-### 4. About Page (`/about`)
+### 5. About Page (`/about`)
 
 - **Hero Section** Deeper dive into who the video editor is and what they specialize in. Includes CTAs for contact initiation, as well as a link towards all projects.
 - **Previous Experience Section** Showcases the video editor's previous work experience in the field. _Editable through admin page._
@@ -40,7 +45,7 @@ This website is a **portfolio platform designed to convert visitors into clients
 - **My Beliefs Section:** Philosophy and approach.
 - **Final CTA** Encourage users to take action (Initiate contact).
 
-### 5. Contact Page (`/contact`)
+### 6. Contact Page (`/contact`)
 
 - **Short Hero Section** Added for design unity.
 - **Contact Form / Details** Includes a contact form, as well as contact details for the video editor (email, phone, location, etc.). _Editable through admin page._

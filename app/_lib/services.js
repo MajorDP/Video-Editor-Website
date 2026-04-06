@@ -88,6 +88,23 @@ export async function getContactPageData() {
   return { error: null, data: data.data };
 }
 
+export async function getProjectData(projectId) {
+  const res = await fetch(BASE_URL + `/portfolioPage/` + projectId, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return {
+      error: "",
+      data: null,
+    };
+  }
+
+  const data = await res.json();
+
+  return { error: null, data: data.data };
+}
+
 export async function getAdminData() {
   const res = await fetch(BASE_URL + `/admin/get`, {
     cache: "no-store",
