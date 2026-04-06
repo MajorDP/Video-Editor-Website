@@ -61,5 +61,18 @@ const contactInfo = {
 
 export async function GET(req) {
   //TODO: LINK WITH ACTUAL DB
-  return NextResponse.json({ experience, stack, contactInfo });
+
+  try {
+    return NextResponse.json({ experience, stack, contactInfo });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        experience: null,
+        stack: null,
+        contactInfo: null,
+        error: "Something went wrong. Please try again.",
+      },
+      { status: 400 },
+    );
+  }
 }
