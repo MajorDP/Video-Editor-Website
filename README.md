@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Professional Video Editor Portfolio Website
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This website is a **portfolio platform designed to convert visitors into clients** for a professional video editor. It features dynamic content sections, editable via a secure admin interface, with future plans for database integration and SEO optimization. The design is **client-first and conversion-focused**, structured to provide **comprehensive clarity for visitors**, highlight key information, and guide clients naturally toward taking action.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages & Structure
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 1. Home Page (`/`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Hero Section:** Eye-catching introduction including a strong value proposition and main CTA.
+- **Mini Stats Section:** Quick numerical highlights (projects, awards, views generated, years of experience, etc.). _Editable through admin page._
+- **Who I Work Best With:** Section intended to qualify visitors and minimize potential bad clients.
+- **Featured Edits:** Highlight reel of selected projects. _Editable through admin page._
+- **Testimonials Section:** Showcases past clients' feedback with intent to create trust with new visitors. _Editable through admin page._
+- **About Me (Short):** Brief self-introduction and credibility.
+- **Final CTA:** Encourage users to take action (Initiate contact or view all projects).
 
-## Learn More
+### 2. Portfolio Page (`/portfolio`)
 
-To learn more about Next.js, take a look at the following resources:
+- **Short Hero Section** Added for design unity.
+- **All Projects Section:** Display of all added projects. Filterable by categories. _Editable through admin page._
+- **Final CTA** Encourage users to take action (Initiate contact).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Services Page (`/services`)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Short Hero Section** Added for design unity.
+- **Services Section:** List of offerings. Includes a short description of each service. _Editable through admin page._
+- **Detailed Process per Service:** Step-by-step workflow for each service offered. Includes details regarding workflow, deliverables, turnaround time, as well as included revisions. _Editable through admin page._
+- **How It Works Section:** Provides general work process summary for prospective clients.
+- **Final CTA** Encourage users to take action (Initiate contact).
 
-## Deploy on Vercel
+### 4. About Page (`/about`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Hero Section** Deeper dive into who the video editor is and what they specialize in. Includes CTAs for contact initiation, as well as a link towards all projects.
+- **Previous Experience Section** Showcases the video editor's previous work experience in the field. _Editable through admin page._
+- **Production Stack Section:** Short showcase of tools and software expertise. _Editable through admin page._
+- **My Beliefs Section:** Philosophy and approach.
+- **Final CTA** Encourage users to take action (Initiate contact).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 5. Contact Page (`/contact`)
+
+- **Short Hero Section** Added for design unity.
+- **Contact Form / Details** Includes a contact form, as well as contact details for the video editor (email, phone, location, etc.). _Editable through admin page._
+
+---
+
+## Admin Panel (`/admin`)
+
+- **Function:** Allows editing website content dynamically.
+- **Features:**
+  - Stats
+  - Projects
+  - Testimonials
+  - Services
+  - Experience
+  - Production Stack
+  - Contact Info
+- **Security:** Requires authentication; Redirects to `/login` if not logged in.
+- **Current Status:** Entirely visual with dummy data for visual testing.
+
+---
+
+## Technical Notes
+
+- **Frontend:** Semantic HTML with fully structured sections.
+- **Routing:** Standard multi-page routes (`/`, `/portfolio`, `/services`, etc.)
+- **Rendering:** Server-Side Rendered (SSR) - each page is fully generated by the server.
+- **Dynamic Data:** Currently uses dummy data; API & DB integration pending.
+- **Footer:** Consistent across all pages.
+- **Tech Stack Used:** `Next.js`, `TailwindCSS`
+
+---
+
+## Next Steps
+
+1. **Database Integration:**
+   - Enable fetching and updating real website data via API.
+2. **SEO Optimization:**
+   - Replace dummy texts with copywriting tailored for search engines and conversions, considering potential client searches.
+   - Sitemap generation
+   - `robots.txt` setup
+3. **Additional Future Improvements:**
+   - Performance optimization (lazy loading, caching)
+
+---
+
+## Usage Notes
+
+- **Updating Content:** Done through `/admin` interface. Changes reflect site-wide.
+- **Authentication:** Admin actions require login.
+- **Extensibility:** Designed for additional sections, pages, or features without need of a structural overhaul.
+
+---

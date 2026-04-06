@@ -1,13 +1,16 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
+import Navigation from "./_components/Navigation";
 import "./globals.css";
+import Footer from "./_components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fontHeading = Space_Grotesk({
+  variable: "--font-heading",
+  weight: "700",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fontText = Manrope({
+  variable: "--font-text",
   subsets: ["latin"],
 });
 
@@ -20,9 +23,13 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fontHeading.variable} ${fontText.className} bg-bg-primary text-text-primary`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navigation />
+        {children}
+        {/* <Footer /> */}
+      </body>
     </html>
   );
 }
