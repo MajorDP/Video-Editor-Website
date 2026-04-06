@@ -7,6 +7,12 @@ import Footer from "../_components/Footer";
 export default async function Page() {
   const { error, data } = await getPortfolioPageData();
 
+  if (error || !data) {
+    return (
+      <p className="py-44 text-center">Failed to load Portfolio page data.</p>
+    );
+  }
+
   const { allEdits, contactInfo } = data;
 
   const categories = allEdits.reduce((catsAcc, edit) => {

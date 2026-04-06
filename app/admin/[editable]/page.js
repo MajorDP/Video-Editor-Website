@@ -13,6 +13,10 @@ export default async function Page({ params }) {
 
   const { error, data } = await getAdminData();
 
+  if (error || !data) {
+    return <p className="py-44 text-center">Failed to load Admin page data.</p>;
+  }
+
   //TODO: add save functionality
   const handleSave = async () => {
     "use server";

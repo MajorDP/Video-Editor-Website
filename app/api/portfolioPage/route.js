@@ -67,17 +67,16 @@ export async function GET() {
   //TODO: LINK WITH ACTUAL DB
   try {
     return NextResponse.json({
-      allEdits,
-      contactInfo,
+      data: { allEdits, contactInfo },
+      error: null,
     });
   } catch (error) {
     return NextResponse.json(
       {
-        allEdits: null,
-        contactInfo: null,
+        data: null,
         error: "Something went wrong. Please try again.",
       },
-      { status: 400 },
+      { status: 500 },
     );
   }
 }

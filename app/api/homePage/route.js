@@ -113,21 +113,16 @@ export async function GET() {
     const featuredEdits = allEdits.filter((edit) => edit.featured);
 
     return NextResponse.json({
-      stats,
-      featuredEdits,
-      testimonials,
-      contactInfo,
+      data: { stats, featuredEdits, testimonials, contactInfo },
+      error: null,
     });
   } catch (error) {
     return NextResponse.json(
       {
-        stats: null,
-        featuredEdits: null,
-        testimonials: null,
-        contactInfo: null,
+        data: null,
         error: "Something went wrong. Please try again.",
       },
-      { status: 400 },
+      { status: 500 },
     );
   }
 }

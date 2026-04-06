@@ -6,6 +6,10 @@ import Footer from "./_components/Footer";
 export default async function Home() {
   const { error, data } = await getHomePageData();
 
+  if (error || !data) {
+    return <p className="py-44 text-center">Failed to load Home page data.</p>;
+  }
+
   const { stats, featuredEdits, testimonials, contactInfo } = data;
 
   return (

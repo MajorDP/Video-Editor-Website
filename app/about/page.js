@@ -27,8 +27,11 @@ export default async function Page() {
 
   const { error, data } = await getAboutPageData();
 
-  const { experience = [], stack, contactInfo } = data;
+  if (error || !data) {
+    return <p className="py-44 text-center">Failed to load About page data.</p>;
+  }
 
+  const { experience, stack, contactInfo } = data;
   return (
     <>
       <main className="min-h-screen">

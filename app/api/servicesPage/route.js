@@ -103,15 +103,17 @@ const contactInfo = {
 export async function GET() {
   try {
     //TODO: LINK WITH ACTUAL DB
-    return NextResponse.json({ services, contactInfo });
+    return NextResponse.json({
+      data: { services, contactInfo },
+      error: null,
+    });
   } catch (error) {
     return NextResponse.json(
       {
-        services: null,
-        contactInfo: null,
+        data: null,
         error: "Something went wrong. Please try again.",
       },
-      { status: 400 },
+      { status: 500 },
     );
   }
 }

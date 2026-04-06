@@ -6,6 +6,12 @@ import Footer from "../_components/Footer";
 export default async function Page() {
   const { error, data } = await getServicesPageData();
 
+  if (error || !data) {
+    return (
+      <p className="py-44 text-center">Failed to load Services page data.</p>
+    );
+  }
+
   const { services, contactInfo } = data;
 
   const howItWorks = [

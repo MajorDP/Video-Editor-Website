@@ -1,7 +1,12 @@
-const BASE_URL = "/api";
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://video-editor-website.vercel.app/api"
+    : "http://localhost:3000/api";
 
 export async function getHomePageData() {
-  const res = await fetch(`${BASE_URL}/homePage`);
+  const res = await fetch(BASE_URL + `/homePage`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     return {
@@ -12,11 +17,13 @@ export async function getHomePageData() {
 
   const data = await res.json();
 
-  return { error: null, data };
+  return { error: null, data: data.data };
 }
 
 export async function getPortfolioPageData() {
-  const res = await fetch(`${BASE_URL}/portfolioPage`);
+  const res = await fetch(BASE_URL + `/portfolioPage`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     return {
@@ -27,11 +34,13 @@ export async function getPortfolioPageData() {
 
   const data = await res.json();
 
-  return { error: null, data };
+  return { error: null, data: data.data };
 }
 
 export async function getServicesPageData() {
-  const res = await fetch(`${BASE_URL}/servicesPage`);
+  const res = await fetch(BASE_URL + `/servicesPage`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     return {
@@ -42,11 +51,13 @@ export async function getServicesPageData() {
 
   const data = await res.json();
 
-  return { error: null, data };
+  return { error: null, data: data.data };
 }
 
 export async function getAboutPageData() {
-  const res = await fetch(`${BASE_URL}/aboutPage`);
+  const res = await fetch(BASE_URL + `/aboutPage`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     return {
@@ -57,11 +68,13 @@ export async function getAboutPageData() {
 
   const data = await res.json();
 
-  return { error: null, data };
+  return { error: null, data: data.data };
 }
 
 export async function getContactPageData() {
-  const res = await fetch(`${BASE_URL}/contactPage`);
+  const res = await fetch(BASE_URL + `/contactPage`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     return {
@@ -72,11 +85,13 @@ export async function getContactPageData() {
 
   const data = await res.json();
 
-  return { error: null, data };
+  return { error: null, data: data.data };
 }
 
 export async function getAdminData() {
-  const res = await fetch(`${BASE_URL}/admin/get`);
+  const res = await fetch(BASE_URL + `/admin/get`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) {
     return {
@@ -87,5 +102,5 @@ export async function getAdminData() {
 
   const data = await res.json();
 
-  return { error: null, data };
+  return { error: null, data: data.data };
 }

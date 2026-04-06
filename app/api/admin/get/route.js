@@ -239,13 +239,16 @@ export async function GET() {
 
   try {
     return NextResponse.json({
-      stats,
-      allEdits,
-      testimonials,
-      services,
-      experience,
-      stack,
-      contactInfo,
+      data: {
+        stats,
+        allEdits,
+        testimonials,
+        services,
+        experience,
+        stack,
+        contactInfo,
+      },
+      error: null,
     });
   } catch (error) {
     return NextResponse.json(
