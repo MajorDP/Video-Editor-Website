@@ -94,6 +94,8 @@ This website is a **portfolio platform designed to convert visitors into clients
 3. **Additional Future Improvements:**
    - Performance optimization (lazy loading, caching)
    - Expandable sections, new pages, or dynamic features without structural changes (Optional).
+   - Expandable sections, new pages, or dynamic features without structural changes (Optional).
+   - Move from JSON files to real database, as the site currently stores editable content in a JSON file (`websiteData.json`). This approach **does not persist reliably** on serverless platforms (like Vercel), as even utilizing `/tmp` storage resets on redeploys or cold starts.
 
 ---
 
