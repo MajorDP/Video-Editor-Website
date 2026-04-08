@@ -1,19 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Projects({ allEdits = [], categories = [] }) {
   const [currCat, setCurrCat] = useState("all");
 
   const filteredCategories = allEdits.filter((edit) => {
-    console.log(edit);
     return currCat == "all"
       ? edit
       : edit.cat.some((categ) => categ.filter === currCat);
   });
 
-  console.log(currCat);
   return (
     <section className="px-4 lg:px-12 xl:px-24 py-24">
       <ul className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-6 items-center gap-8 text-text-muted">
@@ -33,7 +32,8 @@ export default function Projects({ allEdits = [], categories = [] }) {
           const colspan = index % 2 === 0 ? "xl:col-span-2" : "";
 
           return (
-            <div
+            <Link
+              href={`/portfolio/${edit.id}`}
               key={edit.title}
               className={`${index % 2 === 0 ? "xl:col-span-2" : ""} relative h-96 rounded group cursor-pointer`}
             >
@@ -65,7 +65,7 @@ export default function Projects({ allEdits = [], categories = [] }) {
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

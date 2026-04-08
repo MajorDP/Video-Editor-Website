@@ -1,10 +1,17 @@
 "use client";
 
+import { saveData } from "@/app/_lib/services";
+import { validationFns } from "@/app/_lib/validation";
 import { useState } from "react";
 
 export default function TestimonialsEditForm({ data = [], onSave }) {
-  //TODO: ADD SAVE FUNCTIONALITY
   const [testimonials, setTestimonials] = useState(data);
+
+  const [errorData, setErrorData] = useState(
+    data.map((field, index) => {
+      return { error: null, field: index };
+    }),
+  );
 
   const handleChange = (index, field, value) => {
     const updated = [...testimonials];
@@ -12,10 +19,14 @@ export default function TestimonialsEditForm({ data = [], onSave }) {
     setTestimonials(updated);
   };
 
-  const handleFileChange = (index, file) => {
+  const handleFileChange = (index, e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
     const updated = [...testimonials];
-    updated[index].img = file;
+
     updated[index].preview = URL.createObjectURL(file);
+    updated[index].file = file;
     setTestimonials(updated);
   };
 
@@ -36,6 +47,72 @@ export default function TestimonialsEditForm({ data = [], onSave }) {
     const updated = [...testimonials];
     updated.splice(index, 1);
     setTestimonials(updated);
+  };
+
+  const fileToBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+    });
+
+  // const handleSave = async () => {
+  //   const emptyFields = validationFns["testimonials"](testimonials);
+
+  //   if (emptyFields.length > 0) {
+  //     console.log(emptyFields);
+  //     setErrorData(emptyFields);
+  //   } else {
+  //     const { error, success } = await saveData(testimonials, "testimonials");
+
+  //     if (error && !success) {
+  //       console.log(error);
+  //       setErrorData(error);
+  //     } else {
+  //       setErrorData([]);
+  //       alert("Changes saved successfully!");
+  //     }
+  //   }
+  // };
+  const handleSave = async () => {
+    const emptyFields = validationFns["testimonials"](testimonials);
+
+    if (emptyFields.length > 0) {
+      setErrorData(emptyFields);
+      return;
+    }
+
+    //process newly added images for projects for backend
+    const processedTestimonials = await Promise.all(
+      testimonials.map(async (testimonial) => {
+        let img = testimonial.img;
+
+        if (testimonial.file) {
+          img = await fileToBase64(testimonial.file);
+        }
+
+        return {
+          ...testimonial,
+          img,
+          file: undefined,
+          preview: undefined,
+        };
+      }),
+    );
+
+    const { error, success } = await saveData(
+      processedTestimonials,
+      "testimonials",
+    );
+
+    if (error && !success) {
+      setErrorData(error);
+    } else {
+      setErrorData([]);
+      alert("Changes saved successfully!");
+      window.location.reload();
+    }
   };
 
   return (
@@ -78,16 +155,18 @@ export default function TestimonialsEditForm({ data = [], onSave }) {
           <div className="flex flex-col gap-2">
             <label className="text-sm text-text-muted">Profile Image</label>
 
-            <img
-              src={t.preview || null}
-              alt="preview"
-              className="w-20 h-20 object-cover rounded border"
-            />
+            {(t.preview || t.img) && (
+              <img
+                src={t.preview || t.img}
+                alt={t.preview}
+                className="mt-2 w-45 h-45 object-cover rounded border"
+              />
+            )}
 
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => handleFileChange(i, e.target.files[0])}
+              onChange={(e) => handleFileChange(i, e)}
               className="text-sm"
             />
           </div>
@@ -101,6 +180,11 @@ export default function TestimonialsEditForm({ data = [], onSave }) {
               rows={4}
             />
           </div>
+          {errorData.find((e) => e.field === i)?.error && (
+            <p className="text-error mt-2">
+              {errorData.find((e) => e.field === i)?.error}
+            </p>
+          )}
         </div>
       ))}
 
@@ -110,6 +194,16 @@ export default function TestimonialsEditForm({ data = [], onSave }) {
       >
         + Add Testimonial
       </button>
+
+      <button
+        className="cursor-pointer w-full drop-shadow-xl drop-shadow-accent-hover/25 px-6 py-3 bg-linear-to-br from-accent to-accent-hover hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent hover:text-accent transition duration-200 rounded text-black font-semibold tracking-[1.05] text-lg"
+        onClick={handleSave}
+      >
+        SAVE CHANGES
+      </button>
+      {errorData[0]?.field === null && errorData[0]?.error && (
+        <p className="text-error text-center mt-2">{errorData[0]?.error}</p>
+      )}
 
       <pre className="bg-black text-white p-4 rounded text-xs overflow-auto">
         {JSON.stringify(testimonials, null, 2)}

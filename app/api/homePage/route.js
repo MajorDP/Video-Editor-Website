@@ -1,123 +1,43 @@
 import { NextResponse } from "next/server";
-
-const stats = [
-  {
-    label: "Global Projects",
-    stat: "250+",
-  },
-  {
-    label: "Industry Awards",
-    stat: "2",
-  },
-  {
-    label: "Views Generated",
-    stat: "500k",
-  },
-  {
-    label: "Years of Experience",
-    stat: "5+",
-  },
-];
-
-const allEdits = [
-  {
-    id: "edit-1",
-    title: "Edit 1",
-    type: "Youtube Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "yt", label: "Youtube" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 1",
-  },
-  {
-    id: "edit-2",
-    title: "Edit 2",
-    type: "TikTok Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "tt", label: "TikTok" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 2",
-  },
-  {
-    id: "edit-3",
-    title: "Edit 3",
-    type: "Youtube Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "yt", label: "Youtube" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 3",
-  },
-  {
-    id: "edit-4",
-    title: "Edit 4",
-    type: "TikTok Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "tt", label: "TikTok" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 4",
-  },
-];
-
-const testimonials = [
-  {
-    name: "John Johnas",
-    title: "CEO, MCDonalds",
-    description:
-      "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
-
-    img: "/heroImg.png",
-  },
-  {
-    name: "John Johnas2",
-    title: "CEO, MCDonalds",
-    description:
-      "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
-    img: "/heroImg.png",
-  },
-  {
-    name: "John Johnas3",
-    title: "CEO, MCDonalds",
-    description:
-      "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
-    img: "/heroImg.png",
-  },
-];
-
-const contactInfo = {
-  email: "email@gmail.com",
-  location: "NEON CITY, USA",
-  phone: "+123 345 3535",
-  socialMedia: [
-    {
-      href: "https://github.com/yourprofile",
-      label: "Github",
-    },
-    {
-      href: "https://linkedin.com/in/yourprofile",
-      label: "LinkedIn",
-    },
-  ],
-};
+import fs from "fs/promises";
+import path from "path";
 
 export async function GET() {
-  //TODO: LINK WITH ACTUAL DB
   try {
-    const featuredEdits = allEdits.filter((edit) => edit.featured);
+    const filePath = path.join(
+      process.cwd(),
+      "app",
+      "_lib",
+      "websiteData.json",
+    );
+    const file = await fs.readFile(filePath, "utf-8");
+    const fileData = JSON.parse(file);
+
+    if (!fileData || typeof fileData !== "object") {
+      return NextResponse.json(
+        {
+          stats: null,
+          allEdits: null,
+          testimonials: null,
+          services: null,
+          experience: null,
+          stack: null,
+          contactInfo: null,
+          error: "Data structure is invalid.",
+        },
+        { status: 500 },
+      );
+    }
+
+    const featuredEdits = fileData.allEdits.filter((edit) => edit.featured);
 
     return NextResponse.json({
-      data: { stats, featuredEdits, testimonials, contactInfo },
+      data: {
+        stats: fileData.stats,
+        featuredEdits: featuredEdits,
+        testimonials: fileData.testimonials,
+        contactInfo: fileData.contactInfo[0],
+      },
       error: null,
     });
   } catch (error) {

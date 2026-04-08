@@ -1,83 +1,42 @@
 import { NextResponse } from "next/server";
-
-const allEdits = [
-  {
-    id: "edit-1",
-    title: "Edit 1",
-    type: "Youtube Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "yt", label: "Youtube" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 1",
-  },
-  {
-    id: "edit-2",
-    title: "Edit 2",
-    type: "TikTok Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "tt", label: "TikTok" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 2",
-  },
-  {
-    id: "edit-3",
-    title: "Edit 3",
-    type: "Youtube Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "yt", label: "Youtube" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 3",
-  },
-  {
-    id: "edit-4",
-    title: "Edit 4",
-    type: "TikTok Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "tt", label: "TikTok" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 4",
-  },
-];
-
-const contactInfo = {
-  email: "email@gmail.com",
-  location: "NEON CITY, USA",
-  phone: "+123 345 3535",
-  socialMedia: [
-    {
-      href: "https://github.com/yourprofile",
-      label: "Github",
-    },
-    {
-      href: "https://linkedin.com/in/yourprofile",
-      label: "LinkedIn",
-    },
-  ],
-};
+import fs from "fs/promises";
+import path from "path";
 
 export async function GET(request, { params }) {
   const { projectId } = await params;
-  //TODO: LINK WITH ACTUAL DB
-
-  const projectData = allEdits.find(
-    (edit) => edit.id.toLowerCase().replace(/\s+/g, "-") === projectId,
-  );
 
   try {
+    const filePath = path.join(
+      process.cwd(),
+      "app",
+      "_lib",
+      "websiteData.json",
+    );
+    const file = await fs.readFile(filePath, "utf-8");
+    const fileData = JSON.parse(file);
+
+    if (!fileData || typeof fileData !== "object") {
+      return NextResponse.json(
+        {
+          stats: null,
+          allEdits: null,
+          testimonials: null,
+          services: null,
+          experience: null,
+          stack: null,
+          contactInfo: null,
+          error: "Data structure is invalid.",
+        },
+        { status: 500 },
+      );
+    }
+
+    const projectData = fileData.allEdits.find(
+      (edit) => edit.id.toLowerCase().replace(/\s+/g, "-") === projectId,
+    );
+
     return NextResponse.json({
-      data: { projectData, contactInfo },
+      data: { projectData, contactInfo: fileData.contactInfo[0] },
       error: null,
     });
   } catch (error) {

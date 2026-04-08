@@ -79,7 +79,7 @@ export default async function ProjectPage({ params }) {
             src={projectData.img}
             alt="Name Named - Professional video editor with 5+ years of experience"
             fill
-            className="object-cover object-top h-full w-full scale-x-[-1]"
+            className="object-cover h-full w-full opacity-60"
           />
           <div className="z-10 relative space-y-8 px-4 lg:px-12 xl:px-24 col-span-2">
             <h1

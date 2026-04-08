@@ -106,6 +106,7 @@ export async function getProjectData(projectId) {
 }
 
 export async function getAdminData() {
+  //TODO: ADMIN AUTH
   const res = await fetch(BASE_URL + `/admin/get`, {
     cache: "no-store",
   });
@@ -120,4 +121,43 @@ export async function getAdminData() {
   const data = await res.json();
 
   return { error: null, data: data.data };
+}
+
+export async function resetData() {
+  //TODO: ADMIN AUTH
+  const res = await fetch("http://localhost:3000/api/admin/reset", {
+    method: "POST",
+  });
+
+  if (!res.ok) {
+    return {
+      error: "",
+      data: null,
+    };
+  }
+
+  const data = await res.json();
+
+  return { error: data.error, success: data.success };
+}
+
+export async function saveData(data, field) {
+  const res = await fetch("http://localhost:3000/api/admin/edit", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ data, field }),
+  });
+
+  const saveData = await res.json();
+
+  if (!res.ok) {
+    return {
+      error: saveData.error,
+      success: false,
+    };
+  }
+
+  return { error: saveData.errorFields, success: saveData.success };
 }

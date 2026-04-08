@@ -1,9 +1,17 @@
 "use client";
+import { saveData } from "@/app/_lib/services";
+import { validationFns } from "@/app/_lib/validation";
 import { useState } from "react";
 
 export default function ServicesEditForm({ data = [], onSave }) {
   //TODO: ADD SAVE FUNCTIONALITY
   const [services, setServices] = useState(data);
+
+  const [errorData, setErrorData] = useState(
+    data.map((field, index) => {
+      return { error: null, field: index };
+    }),
+  );
 
   const handleChange = (index, field, value) => {
     const updated = [...services];
@@ -27,6 +35,25 @@ export default function ServicesEditForm({ data = [], onSave }) {
     const updated = [...services];
     updated[serviceIndex][field].splice(itemIndex, 1);
     setServices(updated);
+  };
+
+  const handleSave = async () => {
+    const emptyFields = validationFns["services"](services);
+
+    if (emptyFields.length > 0) {
+      console.log(emptyFields);
+      setErrorData(emptyFields);
+    } else {
+      const { error, success } = await saveData(services, "services");
+
+      if (error && !success) {
+        console.log(error);
+        setErrorData(error);
+      } else {
+        setErrorData([]);
+        alert("Changes saved successfully!");
+      }
+    }
   };
 
   return (
@@ -122,8 +149,23 @@ export default function ServicesEditForm({ data = [], onSave }) {
               />
             </div>
           </div>
+          {errorData.find((e) => e.field === i)?.error && (
+            <p className="text-error mt-2">
+              {errorData.find((e) => e.field === i)?.error}
+            </p>
+          )}
         </div>
       ))}
+
+      <button
+        className="cursor-pointer w-full drop-shadow-xl drop-shadow-accent-hover/25 px-6 py-3 bg-linear-to-br from-accent to-accent-hover hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent hover:text-accent transition duration-200 rounded text-black font-semibold tracking-[1.05] text-lg"
+        onClick={handleSave}
+      >
+        SAVE CHANGES
+      </button>
+      {errorData[0]?.field === null && errorData[0]?.error && (
+        <p className="text-error text-center mt-2">{errorData[0]?.error}</p>
+      )}
 
       <pre className="bg-black text-white p-4 rounded text-xs overflow-auto">
         {JSON.stringify(services, null, 2)}

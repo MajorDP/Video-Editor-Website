@@ -2,7 +2,7 @@
 
 ## Overview
 
-This website is a **portfolio platform designed to convert visitors into clients** for a professional video editor. It features dynamic content sections, editable via a secure admin interface, with future plans for database integration and SEO optimization. The design is **client-first and conversion-focused**, structured to provide **comprehensive clarity for visitors**, highlight key information, and guide clients naturally toward taking action.
+This website is a **portfolio platform designed to convert visitors into clients** for a professional video editor. It features dynamic content sections, editable via a secure admin interface, with future plans for SEO-optimization. The design is **client-and-conversion-focused**, structured to provide **comprehensive clarity for visitors**, highlight key information, and guide visitors naturally toward taking action.
 
 ---
 
@@ -63,8 +63,12 @@ This website is a **portfolio platform designed to convert visitors into clients
   - Experience
   - Production Stack
   - Contact Info
+- **Reset to original content:** Admin can reset the database to its original/default state using a dedicated button.
+  - Includes a confirmation prompt to prevent accidental resets.
+  - Replaces all current data with the initial seed content.
+  - Refreshes the admin panel to reflect the reset data immediately.
 - **Security:** Requires authentication; Redirects to `/login` if not logged in.
-- **Current Status:** Entirely visual with dummy data for visual testing.
+- **Current Status:** Fully functional with database integration. All sections editable via admin panel.
 
 ---
 
@@ -81,20 +85,21 @@ This website is a **portfolio platform designed to convert visitors into clients
 
 ## Next Steps
 
-1. **Database Integration:**
-   - Enable fetching and updating real website data via API.
+1. **Auth Integration:**
+   - Set admin pages and admin API routes to be accessible only for an authenticated user.
 2. **SEO Optimization:**
    - Replace dummy texts with copywriting tailored for search engines and conversions, considering potential client searches.
    - Sitemap generation
-   - `robots.txt` setup
+   - robots.txt setup
 3. **Additional Future Improvements:**
    - Performance optimization (lazy loading, caching)
+   - Expandable sections, new pages, or dynamic features without structural changes (Optional).
 
 ---
 
 ## Usage Notes
 
-- **Updating Content:** Done through `/admin` interface. Changes reflect site-wide.
+- **Updating Content:** Done entirely through `/admin` interface. All changes are saved to the database and reflected site-wide.
 - **Authentication:** Admin actions require login.
 - **Extensibility:** Designed for additional sections, pages, or features without need of a structural overhaul.
 

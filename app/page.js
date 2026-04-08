@@ -192,7 +192,8 @@ export default async function Home() {
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12 mt-20">
             {featuredEdits.map((edit, index) => (
-              <div
+              <Link
+                href={`/portfolio/${edit.id}`}
                 key={edit.title}
                 className={`${index % 2 === 0 ? "xl:col-span-2" : ""} relative h-96 rounded group cursor-pointer`}
               >
@@ -219,7 +220,7 @@ export default async function Home() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -247,7 +248,7 @@ export default async function Home() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={testimonial.name}
-                className="space-y-8 mx-auto p-4 lg:p-8 rounded bg-bg-secondary"
+                className="space-y-8 w-full mx-auto p-4 lg:p-8 rounded bg-bg-secondary"
               >
                 <p
                   className={`text-5xl ${index % 2 === 0 ? "text-accent" : "text-[#DD8AFF]"}`}

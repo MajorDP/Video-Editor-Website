@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { resetData } from "../_lib/services";
+import ResetButton from "../_components/adminEditForms/ResetButton";
 
 export default function Page() {
   const options = [
@@ -32,6 +34,14 @@ export default function Page() {
       label: "Edit Contact Info",
     },
   ];
+
+  const handleReset = async () => {
+    "use server";
+
+    const { error, success } = await resetData();
+
+    return { error, success };
+  };
 
   return (
     <main className="min-h-screen space-y-4">
@@ -75,6 +85,7 @@ export default function Page() {
           <p className="max-w-xl text-text-muted tracking-[1.05]">
             Select the content you would like to edit.
           </p>
+          <ResetButton handleReset={handleReset} />
         </div>
       </section>
       <section className="px-4 lg:px-12 xl:px-24 py-24 grid grid-cols-1 lg:grid-cols-2 gap-8">

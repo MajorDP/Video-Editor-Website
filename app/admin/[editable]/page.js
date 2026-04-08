@@ -18,7 +18,7 @@ export default async function Page({ params }) {
   }
 
   //TODO: add save functionality
-  const handleSave = async () => {
+  const handleSave = async (data) => {
     "use server";
   };
 

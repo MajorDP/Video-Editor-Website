@@ -1,26 +1,36 @@
 import { NextResponse } from "next/server";
-
-const contactInfo = {
-  email: "email@gmail.com",
-  location: "NEON CITY, USA",
-  phone: "+123 345 3535",
-  socialMedia: [
-    {
-      href: "https://github.com/yourprofile",
-      label: "Github",
-    },
-    {
-      href: "https://linkedin.com/in/yourprofile",
-      label: "LinkedIn",
-    },
-  ],
-};
+import fs from "fs/promises";
+import path from "path";
 
 export async function GET() {
-  //TODO: LINK WITH ACTUAL DB
   try {
+    const filePath = path.join(
+      process.cwd(),
+      "app",
+      "_lib",
+      "websiteData.json",
+    );
+    const file = await fs.readFile(filePath, "utf-8");
+    const fileData = JSON.parse(file);
+
+    if (!fileData || typeof fileData !== "object") {
+      return NextResponse.json(
+        {
+          stats: null,
+          allEdits: null,
+          testimonials: null,
+          services: null,
+          experience: null,
+          stack: null,
+          contactInfo: null,
+          error: "Data structure is invalid.",
+        },
+        { status: 500 },
+      );
+    }
+
     return NextResponse.json({
-      data: { contactInfo },
+      data: { contactInfo: fileData.contactInfo[0] },
       error: null,
     });
   } catch (error) {
@@ -29,7 +39,7 @@ export async function GET() {
         data: null,
         error: "Something went wrong. Please try again.",
       },
-      { status: 400 },
+      { status: 500 },
     );
   }
 }
