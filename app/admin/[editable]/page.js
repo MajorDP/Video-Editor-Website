@@ -5,21 +5,28 @@ import ServicesEditForm from "@/app/_components/adminEditForms/ServicesEditForm"
 import StackEditForm from "@/app/_components/adminEditForms/StackEditForm";
 import StatsEditForm from "@/app/_components/adminEditForms/StatsEditForm";
 import TestimonialsEditForm from "@/app/_components/adminEditForms/TestimonialsEditForm";
-import { getAdminData } from "@/app/_lib/services";
+import { getAdminData, saveData } from "@/app/_lib/services";
+import { cookies } from "next/headers";
 import Image from "next/image";
 
 export default async function Page({ params }) {
   const { editable } = await params;
 
-  const { error, data } = await getAdminData();
+  const cookiesStore = await cookies();
+  const token = cookiesStore.get("token");
+
+  const { error, data } = await getAdminData(token.value);
 
   if (error || !data) {
     return <p className="py-44 text-center">Failed to load Admin page data.</p>;
   }
 
-  //TODO: add save functionality
-  const handleSave = async (data) => {
+  const handleSave = async (data, field) => {
     "use server";
+
+    const { error, success } = await saveData(data, field, token.value);
+
+    return { error, success };
   };
 
   const options = {

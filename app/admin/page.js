@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { resetData } from "../_lib/services";
 import ResetButton from "../_components/adminEditForms/ResetButton";
+import { cookies } from "next/headers";
 
 export default function Page() {
   const options = [
@@ -38,9 +39,13 @@ export default function Page() {
   const handleReset = async () => {
     "use server";
 
-    const { error, success } = await resetData();
+    const cookiesStore = await cookies();
+    const token = cookiesStore.get("token");
+    console.log("res token ck", token);
 
-    return { error, success };
+    const { error, success } = await resetData(token.value);
+    console.log("question ", error);
+    return { error: error ? error[0].error : null, success };
   };
 
   return (

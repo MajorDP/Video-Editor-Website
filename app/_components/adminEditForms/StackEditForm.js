@@ -37,7 +37,8 @@ export default function StackEditForm({ data = [], onSave }) {
       console.log(emptyFields);
       setErrorData(emptyFields);
     } else {
-      const { error, success } = await saveData(stack, "stack");
+      // const { error, success } = await saveData(stack, "stack");
+      const { error, success } = await onSave(stack, "stack");
 
       if (error && !success) {
         console.log(error);

@@ -1,8 +1,31 @@
 import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import { validateToken } from "@/app/_lib/auth";
 
-export async function GET() {
+export async function GET(req) {
+  const token = req.cookies.get("token");
+
+  if (!token) {
+    return NextResponse.json(
+      {
+        data: null,
+        error: "Invalid session.",
+      },
+      { status: 401 },
+    );
+  }
+
+  if (!validateToken(token)) {
+    return NextResponse.json(
+      {
+        data: null,
+        error: "Invalid session.",
+      },
+      { status: 401 },
+    );
+  }
+
   try {
     const filePath = path.join(
       process.cwd(),
@@ -16,13 +39,7 @@ export async function GET() {
     if (!fileData || typeof fileData !== "object") {
       return NextResponse.json(
         {
-          stats: null,
-          allEdits: null,
-          testimonials: null,
-          services: null,
-          experience: null,
-          stack: null,
-          contactInfo: null,
+          data: null,
           error: "Data structure is invalid.",
         },
         { status: 500 },
@@ -44,13 +61,7 @@ export async function GET() {
   } catch (error) {
     return NextResponse.json(
       {
-        stats: null,
-        allEdits: null,
-        testimonials: null,
-        services: null,
-        experience: null,
-        stack: null,
-        contactInfo: null,
+        data: null,
         error: "Something went wrong. Please try again.",
       },
       { status: 500 },

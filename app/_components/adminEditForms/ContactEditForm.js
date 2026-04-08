@@ -44,7 +44,8 @@ export default function ContactEditForm({ data = [], onSave }) {
     if (emptyFields.length > 0) {
       setErrorData(emptyFields);
     } else {
-      const { error, success } = await saveData(contactInfo, "contactInfo");
+      // const { error, success } = await saveData(contactInfo, "contactInfo");
+      const { error, success } = await onSave(contactInfo, "contactInfo");
 
       if (error && !success) {
         setErrorData(error);

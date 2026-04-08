@@ -1,12 +1,33 @@
 import Image from "next/image";
-import Link from "next/link";
 import LoginForm from "../_components/LoginForm";
+import { handleLogin } from "../_lib/auth";
+import { cookies } from "next/headers";
+import crypto from "crypto";
 
 export default function Page() {
-  //TODO: add login functionality, restrict all /admin pages unless logged in
-  const handleSubmit = async () => {
+  const handleSubmit = async (authData) => {
     "use server";
-    console.log("aAAA");
+    const { error, data } = await handleLogin(authData);
+
+    const cookiesStore = await cookies();
+
+    //HASH DATA HERE
+    const hashedToken = crypto
+      .createHmac("sha256", process.env.ADMIN_SECRET) // server-side secret
+      .update(data) // userId
+      .digest("hex");
+
+    if (!error) {
+      cookiesStore.set("token", hashedToken, {
+        httpOnly: true,
+        maxAge: 60 * 30,
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+      });
+    }
+
+    return error;
   };
 
   return (

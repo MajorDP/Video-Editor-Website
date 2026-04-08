@@ -1,8 +1,31 @@
 import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import { validateToken } from "@/app/_lib/auth";
 
-export async function POST() {
+export async function POST(req) {
+  const token = req.cookies.get("token");
+
+  if (!token) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: [{ field: null, error: "Invalid session." }],
+      },
+      { status: 401 },
+    );
+  }
+
+  if (!validateToken(token)) {
+    return NextResponse.json(
+      {
+        data: null,
+        error: [{ field: null, error: "Invalid session." }],
+      },
+      { status: 401 },
+    );
+  }
+
   try {
     const basePath = path.join(process.cwd(), "app", "_lib");
 
@@ -18,7 +41,17 @@ export async function POST() {
       return NextResponse.json(
         {
           success: false,
-          error: "Invalid JSON format in websiteDataOrigin.json",
+          error: [
+            {
+              field: null,
+              error: [
+                {
+                  field: null,
+                  error: "Invalid JSON format in websiteDataOrigin.json.",
+                },
+              ],
+            },
+          ],
         },
         { status: 500 },
       );
@@ -28,7 +61,7 @@ export async function POST() {
       return NextResponse.json(
         {
           success: false,
-          error: "Data structure is invalid.",
+          error: [{ field: null, error: "Data structure is invalid." }],
         },
         { status: 500 },
       );
@@ -48,7 +81,12 @@ export async function POST() {
     return NextResponse.json(
       {
         success: false,
-        error: "Unexpected server error. Please contact your developer.",
+        error: [
+          {
+            field: null,
+            error: "Unexpected server error. Please contact your developer.",
+          },
+        ],
       },
       { status: 500 },
     );

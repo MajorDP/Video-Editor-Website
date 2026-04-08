@@ -63,7 +63,9 @@ export default function ExperienceEditForm({ data = [], onSave }) {
       console.log(emptyFields);
       setErrorData(emptyFields);
     } else {
-      const { error, success } = await saveData(experience, "experience");
+      // const { error, success } = await saveData(experience, "experience");
+
+      const { error, success } = await onSave(experience, "experience");
 
       if (error && !success) {
         console.log(error);

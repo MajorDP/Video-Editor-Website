@@ -44,7 +44,8 @@ export default function ServicesEditForm({ data = [], onSave }) {
       console.log(emptyFields);
       setErrorData(emptyFields);
     } else {
-      const { error, success } = await saveData(services, "services");
+      // const { error, success } = await saveData(services, "services");
+      const { error, success } = await onSave(services, "services");
 
       if (error && !success) {
         console.log(error);

@@ -57,24 +57,6 @@ export default function TestimonialsEditForm({ data = [], onSave }) {
       reader.onerror = reject;
     });
 
-  // const handleSave = async () => {
-  //   const emptyFields = validationFns["testimonials"](testimonials);
-
-  //   if (emptyFields.length > 0) {
-  //     console.log(emptyFields);
-  //     setErrorData(emptyFields);
-  //   } else {
-  //     const { error, success } = await saveData(testimonials, "testimonials");
-
-  //     if (error && !success) {
-  //       console.log(error);
-  //       setErrorData(error);
-  //     } else {
-  //       setErrorData([]);
-  //       alert("Changes saved successfully!");
-  //     }
-  //   }
-  // };
   const handleSave = async () => {
     const emptyFields = validationFns["testimonials"](testimonials);
 
@@ -101,7 +83,11 @@ export default function TestimonialsEditForm({ data = [], onSave }) {
       }),
     );
 
-    const { error, success } = await saveData(
+    // const { error, success } = await saveData(
+    //   processedTestimonials,
+    //   "testimonials",
+    // );
+    const { error, success } = await onSave(
       processedTestimonials,
       "testimonials",
     );

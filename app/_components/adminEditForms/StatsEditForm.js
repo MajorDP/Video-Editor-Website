@@ -25,8 +25,10 @@ export default function StatsEditForm({ data = [], onSave }) {
     if (emptyFields.length > 0) {
       setErrorData(emptyFields);
     } else {
-      const { error, success } = await saveData(stats, "stats");
+      // const { error, success } = await saveData(stats, "stats");
+      const { error, success } = await onSave(stats, "stats");
 
+      console.log(error, success);
       if (error && !success) {
         setErrorData(error);
       } else {

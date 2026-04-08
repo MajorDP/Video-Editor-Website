@@ -107,7 +107,8 @@ export default function ProjectsEditForm({ data = [], onSave }) {
       }),
     );
 
-    const { error, success } = await saveData(processedProjects, "allEdits");
+    // const { error, success } = await saveData(processedProjects, "allEdits");
+    const { error, success } = await onSave(processedProjects, "allEdits");
 
     if (error && !success) {
       setErrorData(error);

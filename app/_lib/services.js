@@ -105,10 +105,13 @@ export async function getProjectData(projectId) {
   return { error: null, data: data.data };
 }
 
-export async function getAdminData() {
-  //TODO: ADMIN AUTH
+export async function getAdminData(token) {
   const res = await fetch(BASE_URL + `/admin/get`, {
     cache: "no-store",
+    credentials: "include",
+    headers: {
+      Cookie: `token=${token}`,
+    },
   });
 
   if (!res.ok) {
@@ -123,29 +126,32 @@ export async function getAdminData() {
   return { error: null, data: data.data };
 }
 
-export async function resetData() {
-  //TODO: ADMIN AUTH
+export async function resetData(token) {
   const res = await fetch("http://localhost:3000/api/admin/reset", {
     method: "POST",
+    headers: {
+      Cookie: `token=${token}`,
+    },
   });
+
+  const data = await res.json();
 
   if (!res.ok) {
     return {
-      error: "",
+      error: data.error,
       data: null,
     };
   }
 
-  const data = await res.json();
-
   return { error: data.error, success: data.success };
 }
 
-export async function saveData(data, field) {
+export async function saveData(data, field, token) {
   const res = await fetch("http://localhost:3000/api/admin/edit", {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
+      Cookie: `token=${token}`,
     },
     body: JSON.stringify({ data, field }),
   });
