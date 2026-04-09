@@ -2,7 +2,7 @@
 
 ## Overview
 
-This website is a **portfolio platform designed to convert visitors into clients** for a professional video editor. It features dynamic content sections, editable via a secure admin interface, with future plans for SEO-optimization. The design is **client-and-conversion-focused**, structured to provide **comprehensive clarity for visitors**, highlight key information, and guide visitors naturally toward taking action.
+This website is a **portfolio platform designed to convert visitors into clients** for a professional video editor. It features dynamic, SEO-optimized content sections, editable via a secure admin interface. The design is **client-and-conversion-focused**, structured to provide **comprehensive clarity for visitors**, highlight key information, and guide visitors naturally toward taking action.
 
 ---
 
@@ -83,17 +83,19 @@ This website is a **portfolio platform designed to convert visitors into clients
 
 ---
 
-## Next Steps
+## Latest Additions
 
 1. **Auth Integration:**
    - Set admin pages and admin API routes to be accessible only for an authenticated user.
 2. **SEO Optimization:**
-   - Replace dummy texts with copywriting tailored for search engines and conversions, considering potential client searches.
+   - Replaced dummy texts with copywriting tailored for search engines and conversions, considering potential client searches.
    - Sitemap generation
    - robots.txt setup
+
+## Next Steps
+
 3. **Additional Future Improvements:**
-   - Performance optimization (lazy loading, caching)
-   - Expandable sections, new pages, or dynamic features without structural changes (Optional).
+   - Performance optimization (lazy loading, caching, image changes/optimization)
    - Expandable sections, new pages, or dynamic features without structural changes (Optional).
    - Move from JSON files to real database, as the site currently stores editable content in a JSON file (`websiteData.json`). This approach **does not persist reliably** on serverless platforms (like Vercel), as even utilizing `/tmp` storage resets on redeploys or cold starts.
 

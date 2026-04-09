@@ -3,6 +3,82 @@ import Link from "next/link";
 import { getServicesPageData } from "../_lib/services";
 import Footer from "../_components/Footer";
 
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://video-editor-website.vercel.app"
+    : "http://localhost:3000";
+
+export const metadata = {
+  title: "Services | Jeremiah Jackson - Professional Video Editor",
+  description:
+    "Discover Jeremiah Jackson's professional video editing services for creators and brands. Elevate your content with cinematic edits, storytelling, and engagement-driven video strategies for YouTube, TikTok, and Instagram.",
+  keywords: [
+    "Video Editing Services",
+    "Jeremiah Jackson",
+    "YouTube Video Editing",
+    "TikTok Video Editing",
+    "Instagram Video Editing",
+    "Social Media Video Editing",
+    "Brand Video Production",
+    "High-Impact Editing",
+    "Content Growth",
+    "Professional Video Editor",
+  ],
+  authors: [
+    {
+      name: "Jeremiah Jackson",
+      url: BASE_URL,
+    },
+  ],
+  creator: "Jeremiah Jackson",
+  publisher: "Jeremiah Jackson",
+  openGraph: {
+    title: "Services | Jeremiah Jackson - Professional Video Editor",
+    description:
+      "Explore tailored video editing services designed to elevate content, increase engagement, and drive conversions across YouTube, TikTok, and Instagram.",
+    url: BASE_URL + "/services",
+    siteName: "Jeremiah Jackson Video Editing",
+    images: [
+      {
+        url: BASE_URL + "/heroImg.png",
+        width: 1200,
+        height: 630,
+        alt: "Jeremiah Jackson - Professional Video Editing Services",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | Jeremiah Jackson - Professional Video Editor",
+    description:
+      "Professional video editing services for creators and brands, focused on engagement, retention, and high-performing content for YouTube, TikTok, and Instagram.",
+    creator: "@JeremiahJackson",
+    images: [
+      {
+        url: BASE_URL + "/heroImg.png",
+        alt: "Jeremiah Jackson - Professional Video Editing Services",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+  },
+  alternates: {
+    canonical: BASE_URL + "/services",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+  },
+};
+
 export default async function Page() {
   const { error, data } = await getServicesPageData();
 
@@ -17,21 +93,21 @@ export default async function Page() {
   const howItWorks = [
     {
       icon: "01",
-      title: "Concept & Planning",
+      title: "Strategy & Planning",
       description:
-        "We start by understanding your goals, audience, and vision to craft a concept that hits the mark.",
+        "We define your goals, audience, and content strategy to ensure every edit is built for performance, not just aesthetics.",
     },
     {
       icon: "02",
       title: "Editing & Motion Design",
       description:
-        "We bring your content to life using cinematic editing, smooth transitions, and compelling motion graphics.",
+        "Your footage is transformed using retention-focused editing, pacing, and motion design tailored to your platform.",
     },
     {
       icon: "03",
       title: "Review & Delivery",
       description:
-        "You review the draft, request revisions if needed, and receive the final high-quality video ready to publish.",
+        "You review the edit, request revisions if needed, and receive a final version optimized for publishing and performance.",
     },
   ];
   return (
@@ -41,23 +117,23 @@ export default async function Page() {
           <div className="absolute inset-0 z-10 bg-linear-to-b from-transparent via-bg-primary/80 to-bg-primary" />
           <Image
             src="/heroImg.png"
-            alt="Name Named - Professional video editor with 5+ years of experience"
+            alt="Jeremiah Jackson - Professional video editor with 5+ years of experience"
             fill
             className="object-cover h-full w-full opacity-60"
           />
           <div className="z-10 relative space-y-8 px-4 lg:px-12 xl:px-24 col-span-2">
             <h1
-              className="text-3xl md:text-7xl lg:text-8xl font-bold relative"
+              className="text-4xl lg:text-7xl font-bold relative"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               <span
                 aria-hidden="true"
                 className="absolute top-0 text-transparent bg-accent-hover/25 bg-clip-text filter blur-sm opacity-60"
               >
-                PRECISION CRAFT
+                VIDEO EDITING SERVICES
               </span>
 
-              <span className="text-text-primary">PRECISION CRAFT</span>
+              <span className="text-text-primary">VIDEO EDITING SERVICES </span>
 
               <br />
 
@@ -66,18 +142,18 @@ export default async function Page() {
                   aria-hidden="true"
                   className="absolute top-1 lg:top-5 text-transparent bg-linear-to-br from-accent/50 to-[#DD8AFF]/50 bg-clip-text filter blur-sm opacity-60"
                 >
-                  FOR DIGITAL MOTION
+                  FOR CREATORS & BRANDS
                 </span>
 
                 <span className="relative bg-linear-to-br from-accent to-[#DD8AFF] bg-clip-text text-transparent">
-                  FOR DIGITAL MOTION
+                  FOR CREATORS & BRANDS
                 </span>
               </span>
             </h1>
             <p className="max-w-xl text-text-muted tracking-[1.05]">
-              Name Named - Video editor with 5+ years of experience. Crafting
-              cinematic stories that drive results for creators and top-tier
-              brands.
+              Explore tailored video editing services designed to elevate your
+              content, capture attention, and drive real engagement across every
+              platform.
             </p>
           </div>
         </section>
@@ -124,7 +200,7 @@ export default async function Page() {
                     index % 2 === 0 ? "text-accent" : "text-[#DD8AFF]"
                   }`}
                 >
-                  What You Actually Get
+                  What You Get With This Service
                 </p>
 
                 <h2 className="text-3xl lg:text-5xl font-bold relative">
@@ -157,7 +233,9 @@ export default async function Page() {
               </div>
 
               <div className="space-y-6 bg-bg-primary p-6 lg:p-10 rounded">
-                <h3 className="text-2xl font-semibold">Process</h3>
+                <h3 className="text-2xl font-semibold">
+                  How This Service Works
+                </h3>
 
                 <ol className="space-y-4 text-text-muted">
                   {service.process.map((step, i) => (
@@ -237,7 +315,7 @@ export default async function Page() {
               >
                 <Image
                   src="/heroImg.png"
-                  alt="Name Named - Professional Video Editor"
+                  alt="Jeremiah Jackson - Professional video editor"
                   fill
                   className="object-cover rounded opacity-40 group-hover:opacity-20"
                 />
@@ -264,16 +342,16 @@ export default async function Page() {
             </span>
           </h2>
           <p className="max-w-xl mx-auto text-center text-text-muted tracking-[1.05]">
-            Name Named - Video editor with 5+ years of experience. Crafting
-            cinematic stories that drive results for creators and top-tier
-            brands.
+            If you&apos;re serious about growing your brand or content,
+            let&apos;s create videos that actually perform. Get a free sample
+            edit and see the difference.
           </p>
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
             <Link
               href="/contact"
               className="drop-shadow-xl drop-shadow-accent-hover/25 px-6 py-3 bg-linear-to-br from-accent to-accent-hover hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent hover:text-accent transition duration-200 rounded text-black font-semibold tracking-[1.05] text-lg"
             >
-              REQUEST DEMO
+              GET A FREE SAMPLE EDIT
             </Link>
           </div>
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-center text-text-muted font-semibold tracking-[1.05]">

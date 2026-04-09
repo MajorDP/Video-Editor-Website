@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /login
+Disallow: /admin
+Disallow: /admin/*
+
+Allow: /
+Allow: /portfolio
+Allow: /services
+Allow: /about
+Allow: /contact
+Allow: /portfolio/*
+
+# Optional sitemap (if you have one)
+Sitemap: https://video-editor-website.vercel.app/sitemap.xml

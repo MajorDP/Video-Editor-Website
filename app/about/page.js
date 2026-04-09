@@ -2,26 +2,100 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAboutPageData } from "../_lib/services";
 import Footer from "../_components/Footer";
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://video-editor-website.vercel.app"
+    : "http://localhost:3000";
+
+export const metadata = {
+  title: "About | Jeremiah Jackson - Professional Video Editor",
+  description:
+    "Learn about Jeremiah Jackson, a professional video editor with 5+ years of experience crafting engaging, high-performing content. Discover his workflow, philosophy, and production tools that make videos stand out on YouTube, TikTok, and Instagram.",
+  keywords: [
+    "Jeremiah Jackson",
+    "Video Editor About",
+    "Professional Video Editor",
+    "Video Editing Workflow",
+    "Video Editing Philosophy",
+    "Social Media Video Editing",
+    "YouTube Video Editing",
+    "TikTok Video Editing",
+    "Instagram Video Editing",
+    "Content Growth",
+    "High-Impact Editing",
+    "Video Production Tools",
+  ],
+  authors: [
+    {
+      name: "Jeremiah Jackson",
+      url: BASE_URL,
+    },
+  ],
+  creator: "Jeremiah Jackson",
+  publisher: "Jeremiah Jackson",
+  openGraph: {
+    title: "About | Jeremiah Jackson - Professional Video Editor",
+    description:
+      "Meet Jeremiah Jackson, a video editor who crafts visual rhythm with precision, pacing, and storytelling. See his experience, production stack, and philosophy behind high-performing edits for social media.",
+    url: BASE_URL + "/about",
+    siteName: "Jeremiah Jackson Video Editing",
+    images: [
+      {
+        url: BASE_URL + "/aboutImg.webp",
+        width: 1200,
+        height: 630,
+        alt: "Jeremiah Jackson - Professional Video Editor",
+      },
+    ],
+    locale: "en_US",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Jeremiah Jackson - Professional Video Editor",
+    description:
+      "Jeremiah Jackson is a professional video editor crafting high-performing content with precision and storytelling for YouTube, TikTok, and Instagram.",
+    creator: "@JeremiahJackson",
+    images: [
+      {
+        url: BASE_URL + "/aboutImg.webp",
+        alt: "Jeremiah Jackson - Professional Video Editor",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+  },
+  alternates: {
+    canonical: BASE_URL + "/about",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+  },
+};
 
 export default async function Page() {
   const beliefs = [
     {
-      icon: "John Johnas",
-      title: "Belief 1",
+      title: "Attention is everything",
       description:
-        "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
+        "If the video doesn't hold attention, nothing else matters. Every cut, transition, and second of pacing is built to keep people watching.",
     },
     {
-      icon: "John Johnas2",
-      title: "Belief 2",
+      title: "Pacing beats aesthetics",
       description:
-        "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
+        "A beautiful video that drags is a failure. Strong rhythm and timing will always outperform visuals that exist without purpose.",
     },
     {
-      icon: "John Johnas3",
-      title: "Belief 3",
+      title: "Every frame is justified",
       description:
-        "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
+        "Nothing stays in the edit unless it serves a clear purpose—story, emotion, or retention. If it doesn't add value, it's gone.",
     },
   ];
 
@@ -45,7 +119,7 @@ export default async function Page() {
           />
           <div className="z-10 relative space-y-8 px-4 lg:px-12 xl:px-24 col-span-2">
             <h1
-              className="text-3xl md:text-7xl lg:text-8xl font-bold relative"
+              className="text-4xl lg:text-7xl font-bold relative"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               <span
@@ -73,24 +147,23 @@ export default async function Page() {
               </span>
             </h1>
             <p className="max-w-xl text-text-muted tracking-[1.05]">
-              Name Named - Video editor with 5+ years of experience. Crafting
-              cinematic stories that drive results for creators and top-tier
-              Name Named - Video editor with 5+ years of experience. Crafting
-              cinematic stories that drive results for creators and top-tier
-              brands.
+              I&apos;m a video editor focused on precision, pacing, and
+              storytelling that actually holds attention. Every frame, cut, and
+              transition is intentional - built to keep viewers watching and
+              coming back for more.
             </p>
             <div className="flex flex-col sm:flex-row gap-8">
               <Link
                 href="/contact"
                 className="w-fit drop-shadow-xl drop-shadow-accent-hover/25 px-6 py-3 bg-linear-to-br from-accent to-accent-hover hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent hover:text-accent transition duration-200 rounded text-black font-semibold tracking-[1.05] text-lg"
               >
-                REQUEST DEMO
+                GET A FREE SAMPLE EDIT
               </Link>
               <Link
                 href="/portfolio"
                 className="w-fit px-6 py-3 bg-bg-secondary border border-border-secondary rounded text-text-primary font-semibold tracking-[1.05] text-lg"
               >
-                VIEW SHOWREEL
+                WATCH MY WORK
               </Link>
             </div>
           </div>
@@ -111,11 +184,11 @@ export default async function Page() {
           </h2>
           <div className="h-1 bg-linear-to-br from-accent to-[#DD8AFF] w-24 rounded mt-4" />
           <p className="max-w-xl text-text-muted mt-4">
-            Feedback from those who trusted my vision. Feedback from those who
-            trusted my vision. Feedback from those who trusted my vision.
-            Feedback from those who trusted my vision.
+            A track record of working with creators and brands to produce
+            content that doesn&apos;t just look good - but performs where it
+            matters.
           </p>
-          <div className="mt-20 grid grid-cols-1 lg:grid-cols-2">
+          <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="space-y-8">
               {experience.map((exp, index) => (
                 <div key={index} className="space-y-4 group relative pl-12">
@@ -126,10 +199,12 @@ export default async function Page() {
                   <h3 className="text-3xl font-bold tracking-[1.05]">
                     {exp.title.toUpperCase()}
                   </h3>
-                  <p className="text-text-muted">{exp.description}</p>
+                  <p className="text-text-muted max-w-xl">{exp.description}</p>
                   <ul className="text-text-muted space-y-2">
                     {exp.achievements.map((achievement) => (
-                      <li key={achievement}>- {achievement}</li>
+                      <li key={achievement} className="max-w-md">
+                        - {achievement}
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -159,7 +234,11 @@ export default async function Page() {
             </span>
             My Production Stack
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-8 mx-auto w-fit mt-20">
+          <p className="max-w-xl text-text-muted mt-4 text-center mx-auto">
+            The tools behind the workflow - optimized for speed, precision, and
+            consistency.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto w-fit mt-20">
             {stack.map((stat) => (
               <div
                 key={stat.label}
@@ -192,7 +271,8 @@ export default async function Page() {
           <div className="h-1 bg-linear-to-br from-accent to-[#DD8AFF] w-24 rounded mt-4" />
 
           <p className="max-w-xl  text-text-muted mt-4">
-            Feedback from those who trusted my vision.
+            The standards I follow every time I work on a project - no
+            exceptions.
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-20">
@@ -232,9 +312,8 @@ export default async function Page() {
             </span>
           </h2>
           <p className="max-w-xl mx-auto text-center text-text-muted tracking-[1.05]">
-            Name Named - Video editor with 5+ years of experience. Crafting
-            cinematic stories that drive results for creators and top-tier
-            brands.
+            If you want content that actually keeps people watching, not just
+            scrolling - let&apos;s build something that delivers.
           </p>
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
             <Link

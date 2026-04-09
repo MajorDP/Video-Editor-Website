@@ -2,6 +2,82 @@ import Image from "next/image";
 import { getContactPageData } from "../_lib/services";
 import Footer from "../_components/Footer";
 
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://video-editor-website.vercel.app"
+    : "http://localhost:3000";
+
+export const metadata = {
+  title: "Contact | Jeremiah Jackson - Professional Video Editor",
+  description:
+    "Reach out to Jeremiah Jackson to start your next high-performing video project. Whether it's YouTube, TikTok, Instagram, or ads, get a free consultation and see your ideas come to life with expert video editing.",
+  keywords: [
+    "Jeremiah Jackson",
+    "Contact Video Editor",
+    "Video Editing Consultation",
+    "YouTube Video Editing",
+    "TikTok Video Editing",
+    "Instagram Video Editing",
+    "Freelance Video Editor Contact",
+    "High-Impact Editing Services",
+    "Content Growth",
+    "Social Media Video Editing",
+  ],
+  authors: [
+    {
+      name: "Jeremiah Jackson",
+      url: BASE_URL,
+    },
+  ],
+  creator: "Jeremiah Jackson",
+  publisher: "Jeremiah Jackson",
+  openGraph: {
+    title: "Contact | Jeremiah Jackson - Professional Video Editor",
+    description:
+      "Get in touch with Jeremiah Jackson to discuss your next video project. Share your ideas and goals to see them transformed into high-performing content for YouTube, TikTok, Instagram, and more.",
+    url: BASE_URL + "/contact",
+    siteName: "Jeremiah Jackson Video Editing",
+    images: [
+      {
+        url: BASE_URL + "/aboutImg.webp",
+        width: 1200,
+        height: 630,
+        alt: "Jeremiah Jackson - Professional Video Editor",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Jeremiah Jackson - Professional Video Editor",
+    description:
+      "Connect with Jeremiah Jackson to turn your content ideas into high-performing videos for YouTube, TikTok, Instagram, and social campaigns.",
+    creator: "@JeremiahJackson",
+    images: [
+      {
+        url: BASE_URL + "/aboutImg.webp",
+        alt: "Jeremiah Jackson - Professional Video Editor",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+  },
+  alternates: {
+    canonical: BASE_URL + "/contact",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+  },
+};
+
 export default async function Page() {
   const { error, data } = await getContactPageData();
 
@@ -53,16 +129,21 @@ export default async function Page() {
               TOGETHER
             </h1>
             <p className="max-w-xl text-text-muted tracking-[1.05]">
-              Name Named - Video editor with 5+ years of experience. Crafting
-              cinematic stories that drive results for creators and top-tier
-              brands.
+              If you&apos;re serious about creating content that actually holds
+              attention, let&apos;s talk. Share your idea, your goals, or even
+              just a rough concept—I&apos;ll help you turn it into something
+              that performs.{" "}
+              <span className="font-semibold">
+                Reach out directly or use the form - whichever&apos;s easier. I
+                typically respond within 24 hours.
+              </span>
             </p>
           </div>
         </section>
         <section className="px-4 lg:px-12 xl:px-24 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-8">
             <h2 className="text-[#DD8AFF]/80 font-bold tracking-[1.05]">
-              CONTACT INFORMATION:
+              START YOUR PROJECT TODAY:
             </h2>
             <div className="space-y-8 text-text-muted">
               <div className="space-y-4">

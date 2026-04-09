@@ -4,56 +4,109 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-const allEdits = [
-  {
-    id: "edit-1",
-    title: "Edit 1",
-    type: "Youtube Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "yt", label: "Youtube" },
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://video-editor-website.vercel.app"
+    : "http://localhost:3000";
+
+export async function generateMetadata({ params }) {
+  const { project } = await params;
+
+  const { error, data } = await getProjectData(project);
+
+  if (error || !data?.projectData) {
+    return {
+      title: "Project Not Found | Jeremiah Jackson",
+      description: "This project does not exist or could not be found.",
+      openGraph: {
+        title: "Project Not Found | Jeremiah Jackson",
+        description: "This project does not exist or could not be found.",
+        url: `${BASE_URL}/portfolio/${project}`,
+        images: [
+          {
+            url: `${BASE_URL}/heroImg.png`,
+            alt: "Project Not Found",
+            width: 1200,
+            height: 630,
+          },
+        ],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Project Not Found | Jeremiah Jackson",
+        description: "This project does not exist or could not be found.",
+        images: [`${BASE_URL}/heroImg.png`],
+      },
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const projectData = data.projectData;
+
+  const canonicalUrl = `${BASE_URL}/portfolio/${project}`;
+
+  const projectTitle = projectData.title || "Project";
+  const projectDescription =
+    projectData.description ||
+    "High-quality video editing project by Jeremiah Jackson.";
+
+  return {
+    title: `${projectTitle} | Jeremiah Jackson`,
+    description: projectDescription,
+    keywords: [
+      "Video Editing",
+      "Freelance Video Editor",
+      "YouTube Video Editing",
+      "TikTok Video Editing",
+      "Instagram Video Editing",
+      "Jeremiah Jackson",
+      "Social Media Video Editing",
+      "Content Growth",
+      "Brand Video Production",
+      "High-Impact Editing",
     ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 1",
-  },
-  {
-    id: "edit-1",
-    title: "Edit 2",
-    type: "TikTok Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "tt", label: "TikTok" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 2",
-  },
-  {
-    id: "edit-1",
-    title: "Edit 3",
-    type: "Youtube Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "yt", label: "Youtube" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 3",
-  },
-  {
-    id: "edit-1",
-    title: "Edit 4",
-    type: "TikTok Edit",
-    cat: [
-      { filter: "all", label: "All" },
-      { filter: "tt", label: "TikTok" },
-    ],
-    img: "/heroImg.png",
-    featured: true,
-    description: "Description of edit 4",
-  },
-];
+    authors: [{ name: "Jeremiah Jackson", url: BASE_URL }],
+    creator: "Jeremiah Jackson",
+    publisher: "Jeremiah Jackson",
+    openGraph: {
+      title: `${projectTitle} | Jeremiah Jackson`,
+      description: projectDescription,
+      url: `${BASE_URL}/portfolio/${project}`,
+      siteName: "Jeremiah Jackson Video Editing",
+      images: [
+        {
+          url: `${BASE_URL}${projectData.img}`,
+          alt: projectTitle,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${projectTitle} | Jeremiah Jackson`,
+      description: projectDescription,
+      creator: "@JeremiahJackson",
+      images: [`${BASE_URL}${projectData.img}`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      nocache: true,
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    icons: {
+      icon: "/favicon.ico",
+      shortcut: "/favicon-32x32.png",
+      apple: "/apple-touch-icon.png",
+    },
+  };
+}
 
 export default async function ProjectPage({ params }) {
   const { project } = await params;
@@ -83,7 +136,7 @@ export default async function ProjectPage({ params }) {
           />
           <div className="z-10 relative space-y-8 px-4 lg:px-12 xl:px-24 col-span-2">
             <h1
-              className="text-3xl md:text-7xl lg:text-8xl font-bold relative"
+              className="text-3xl lg:text-7xl font-bold relative"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               <span
@@ -102,11 +155,11 @@ export default async function ProjectPage({ params }) {
                   aria-hidden="true"
                   className="absolute top-1 lg:top-5 text-transparent bg-linear-to-br from-accent/50 to-[#DD8AFF]/50 bg-clip-text filter blur-sm opacity-60"
                 >
-                  {projectData.title}
+                  {projectData.title.toUpperCase()}
                 </span>
 
                 <span className="relative bg-linear-to-br from-accent to-[#DD8AFF] bg-clip-text text-transparent">
-                  {projectData.title}
+                  {projectData.title.toUpperCase()}
                 </span>
               </span>
             </h1>
@@ -118,7 +171,7 @@ export default async function ProjectPage({ params }) {
                 href="/contact"
                 className="w-fit drop-shadow-xl drop-shadow-accent-hover/25 px-6 py-3 bg-linear-to-br from-accent to-accent-hover hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent hover:text-accent transition duration-200 rounded text-black font-semibold tracking-[1.05] text-lg"
               >
-                REQUEST DEMO
+                REQUEST SIMILAR EDIT
               </Link>
               <Link
                 href="/portfolio"

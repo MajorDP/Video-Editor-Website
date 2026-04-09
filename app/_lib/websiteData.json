@@ -1,16 +1,16 @@
 {
   "stats": [
     {
-      "label": "Global Projects",
-      "stat": "250+"
+      "label": "VIDEOS EDITED",
+      "stat": "500+"
     },
     {
-      "label": "Industry Awards",
-      "stat": "2"
+      "label": "CLIENTS SERVED",
+      "stat": "120+"
     },
     {
-      "label": "Views Generated",
-      "stat": "500k"
+      "label": "VIEWS GENERATED",
+      "stat": "10M"
     },
     {
       "label": "Years of Experience",
@@ -20,8 +20,8 @@
   "allEdits": [
     {
       "id": "edit-1",
-      "title": "Edit 1",
-      "type": "Youtube Edit",
+      "title": "High-Retention YouTube Edit",
+      "type": "YouTube Content",
       "cat": [
         {
           "filter": "all",
@@ -29,17 +29,17 @@
         },
         {
           "filter": "yt",
-          "label": "Youtube"
+          "label": "YouTube"
         }
       ],
       "img": "/heroImg.png",
       "featured": true,
-      "description": "Description of edit 1"
+      "description": "Edited a long-form YouTube video with a focus on retention—tight pacing, pattern interrupts, and clean transitions to keep viewers engaged throughout."
     },
     {
       "id": "edit-2",
-      "title": "Edit 2",
-      "type": "TikTok Edit",
+      "title": "Viral TikTok Cut",
+      "type": "Short-Form Content",
       "cat": [
         {
           "filter": "all",
@@ -52,12 +52,12 @@
       ],
       "img": "/heroImg.png",
       "featured": true,
-      "description": "Description of edit 2"
+      "description": "Fast-paced short-form edit designed for maximum scroll-stopping impact. Hook optimization, subtitles, and dynamic cuts tailored for TikTok performance."
     },
     {
       "id": "edit-3",
-      "title": "Edit 3",
-      "type": "Youtube Edit",
+      "title": "Story-Driven YouTube Video",
+      "type": "YouTube Content",
       "cat": [
         {
           "filter": "all",
@@ -65,17 +65,17 @@
         },
         {
           "filter": "yt",
-          "label": "Youtube"
+          "label": "YouTube"
         }
       ],
       "img": "/heroImg.png",
       "featured": true,
-      "description": "Description of edit 3"
+      "description": "Structured and edited a narrative-driven video with a strong intro, clean flow, and intentional pacing to maintain viewer interest from start to finish."
     },
     {
       "id": "edit-4",
-      "title": "Edit 4",
-      "type": "TikTok Edit",
+      "title": "Short-Form Engagement Edit",
+      "type": "Short-Form Content",
       "cat": [
         {
           "filter": "all",
@@ -88,26 +88,26 @@
       ],
       "img": "/heroImg.png",
       "featured": true,
-      "description": "Description of edit 4"
+      "description": "Optimized for engagement—quick cuts, visual hooks, and on-screen text designed to increase watch time and interaction on short-form platforms."
     }
   ],
   "testimonials": [
     {
-      "name": "John Johnas",
-      "title": "CEO, MCDonalds",
-      "description": "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
+      "name": "John Jonas",
+      "title": "CEO, Food industry",
+      "description": "Jeremiah transformed our internal campaign videos into engaging, concise content that boosted viewer engagement by 40%. The attention to pacing and storytelling was outstanding.",
       "img": "/heroImg.png"
     },
     {
-      "name": "John Johnas2",
-      "title": "CEO, MCDonalds",
-      "description": "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
+      "name": "Sarah Lee",
+      "title": "Marketing Director, Red Bull",
+      "description": "Working with Jeremiah Jackson elevated our social media content. Short-form edits were crafted to maximize impact, increasing our TikTok engagement rates by over 30%.",
       "img": "/heroImg.png"
     },
     {
-      "name": "John Johnas3",
-      "title": "CEO, MCDonalds",
-      "description": "Name Named provided great services Name Named provided great services Name Named provided great services Name Named provided great services",
+      "name": "Michael Chen",
+      "title": "Founder, TechWave",
+      "description": "JJs editing skills turned our product demo videos into compelling narratives that drove both awareness and conversions. Clear, creative, and on-point execution.",
       "img": "/heroImg.png"
     }
   ],
@@ -194,35 +194,35 @@
   "experience": [
     {
       "title": "Lead Editor",
-      "company": "FREELANCE",
+      "company": "Freelance",
       "date": "2022 - PRESENT",
-      "description": "Description regarding Lead Editor",
+      "description": "Leading freelance projects for high-profile clients, delivering cinematic edits that boost engagement and brand storytelling.",
       "achievements": [
-        "Achievement 1",
-        "Achievement 2",
-        "Achievement 3"
+        "Produced 50+ high-quality video campaigns for YouTube and social media",
+        "Increased client social engagement by 35% with optimized editing",
+        "Collaborated with marketing teams to enhance brand storytelling"
       ]
     },
     {
       "title": "Senior Editor",
-      "company": "NEXUS STUDIOS",
+      "company": "Nexus Studios",
       "date": "2020 - 2022",
-      "description": "Description regarding Senior Editor",
+      "description": "Managed end-to-end video production, from raw footage to polished final products, for digital campaigns and client presentations.",
       "achievements": [
-        "Achievement 1",
-        "Achievement 2",
-        "Achievement 3"
+        "Edited and delivered 200+ projects across short and long-form content",
+        "Mentored junior editors, improving team efficiency by 20%",
+        "Implemented motion graphics to elevate production value for clients"
       ]
     },
     {
       "title": "Video Editor",
-      "company": "FREELANCE",
+      "company": "Freelance",
       "date": "2019 - 2020",
-      "description": "Description regarding Video Editor",
+      "description": "Provided freelance editing services for YouTube creators and small businesses, focusing on storytelling and audience retention.",
       "achievements": [
-        "Achievement 1",
-        "Achievement 2",
-        "Achievement 3"
+        "Completed 30+ projects with 100% on-time delivery",
+        "Boosted audience retention through pacing and transitions",
+        "Built strong client relationships leading to repeat business"
       ]
     }
   ],
@@ -251,12 +251,24 @@
       "phone": "+123 345 3535",
       "socialMedia": [
         {
-          "href": "https://github.com/yourprofile",
-          "label": "Github"
+          "href": "https://instagram.com/yourprofile",
+          "label": "Instagram"
+        },
+        {
+          "href": "https://youtube.com/yourchannel",
+          "label": "YouTube"
+        },
+        {
+          "href": "https://vimeo.com/yourprofile",
+          "label": "Vimeo"
         },
         {
           "href": "https://linkedin.com/in/yourprofile",
           "label": "LinkedIn"
+        },
+        {
+          "href": "https://tiktok.com/@yourprofile",
+          "label": "TikTok"
         }
       ]
     }

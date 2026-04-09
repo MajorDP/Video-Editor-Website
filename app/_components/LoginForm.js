@@ -4,9 +4,10 @@ import { useState } from "react";
 
 export default function LoginForm({ onSubmit }) {
   const [authData, setAuthData] = useState({
-    username: "user",
-    password: "123",
+    username: "",
+    password: "",
   });
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -42,7 +43,10 @@ export default function LoginForm({ onSubmit }) {
         onChange={(e) => setAuthData({ ...authData, password: e.target.value })}
       />
 
-      <button className="cursor-pointer px-6 py-2 bg-linear-to-br from-accent to-accent-hover hover:text-accent hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent rounded font-semibold text-black tracking-[1.05] text-lg transition duration-200">
+      <button
+        className="cursor-pointer px-6 py-2 bg-linear-to-br from-accent to-accent-hover hover:text-accent hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent rounded font-semibold text-black tracking-[1.05] text-lg transition duration-200"
+        disabled={isLoading}
+      >
         SIGN IN
       </button>
       {error && <p className="text-error text-center">{error}</p>}

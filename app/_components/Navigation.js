@@ -50,10 +50,10 @@ export default function Navigation() {
       <nav className="max-w-7xl w-full m-auto flex items-center justify-between">
         <Link
           href="/"
-          className={`text-xl font-bold ${scrolled ? "text-accent" : "text-accent xl:text-accent/50"} duration-200`}
+          className={`text-xl tracking-[1.05] font-bold ${scrolled ? "text-accent" : "text-accent xl:text-accent/50"} duration-200`}
           style={{ fontFamily: "var(--font-heading)" }}
         >
-          LOGO/NAME.
+          JEREMIAH JACKSON
         </Link>
         <ul className="hidden xl:flex items-center flex-row gap-8">
           {navLinks.map((navLink) => (

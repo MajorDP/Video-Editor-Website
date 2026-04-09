@@ -3,6 +3,74 @@ import Link from "next/link";
 import { getHomePageData } from "./_lib/services";
 import Footer from "./_components/Footer";
 
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://video-editor-website.vercel.app"
+    : "http://localhost:3000";
+
+export const metadata = {
+  title: "Jeremiah Jackson | Professional Video Editor",
+  description:
+    "Jeremiah Jackson is a freelance video editor with 5+ years of experience delivering high-impact edits for creators, brands, and businesses to increase engagement, retention, and conversions.",
+  keywords: [
+    "Video Editing",
+    "Freelance Video Editor",
+    "YouTube Video Editing",
+    "TikTok Video Editing",
+    "Instagram Video Editing",
+    "Jeremiah Jackson",
+    "Social Media Video Editing",
+    "Content Growth",
+    "Brand Video Production",
+    "High-Impact Editing",
+  ],
+  authors: [
+    {
+      name: "Jeremiah Jackson",
+      url: BASE_URL,
+    },
+  ],
+  creator: "Jeremiah Jackson",
+  publisher: "Jeremiah Jackson",
+  openGraph: {
+    title: "Jeremiah Jackson | Professional Video Editor",
+    description:
+      "Freelance video editor delivering high-performing edits for creators and brands to increase engagement and conversions.",
+    url: BASE_URL,
+    siteName: "Jeremiah Jackson Video Editing",
+    images: [
+      {
+        url: BASE_URL + "/heroImg.png",
+        alt: "Jeremiah Jackson - Professional Video Editor",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jeremiah Jackson | Professional Video Editor",
+    description:
+      "Freelance video editor creating high-impact content that boosts engagement, retention, and conversions for creators and brands.",
+    creator: "@JeremiahJackson",
+    images: [BASE_URL + "/heroImg.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+  },
+  alternates: {
+    canonical: BASE_URL,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+  },
+};
 export default async function Home() {
   const { error, data } = await getHomePageData();
 
@@ -19,23 +87,23 @@ export default async function Home() {
           <div className="absolute inset-0 z-10 bg-linear-to-b from-transparent via-bg-primary/80 to-bg-primary" />
           <Image
             src="/heroImg.png"
-            alt="Name Named - Professional video editor with 5+ years of experience"
+            alt="Jeremiah Jackson - Professional video editor with 5+ years of experience"
             fill
             className="object-cover h-full w-full opacity-60"
           />
           <div className="z-10 relative space-y-12">
             <h1
-              className="text-3xl md:text-7xl max-w-xl mx-auto font-bold text-center relative"
+              className="text-4xl md:text-7xl max-w-xl mx-auto font-bold text-center relative"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               <span
                 aria-hidden="true"
-                className="absolute top-0 text-transparent bg-accent-hover/25 bg-clip-text filter blur-sm opacity-60"
+                className="absolute top-0 left-0 text-transparent bg-accent-hover/25 bg-clip-text filter blur-sm opacity-60"
               >
-                WE CAPTURE
+                DELIVERING HIGH-IMPACT
               </span>
 
-              <span className="text-text-primary">WE CAPTURE</span>
+              <span className="text-text-primary">DELIVERING HIGH-IMPACT</span>
 
               <br />
 
@@ -44,31 +112,32 @@ export default async function Home() {
                   aria-hidden="true"
                   className="absolute top-1 lg:top-5 text-transparent bg-linear-to-br from-accent/50 to-[#DD8AFF]/50 bg-clip-text filter blur-sm opacity-60"
                 >
-                  MOTION SOUL
+                  VIDEO EDITING
                 </span>
 
                 <span className="relative bg-linear-to-br from-accent to-[#DD8AFF] bg-clip-text text-transparent">
-                  MOTION SOUL
+                  VIDEO EDITING
                 </span>
               </span>
             </h1>
             <p className="max-w-xl mx-auto text-center text-text-muted tracking-[1.05]">
-              Name Named - Video editor with 5+ years of experience. Crafting
-              cinematic stories that drive results for creators and top-tier
-              brands.
+              Jeremiah Jackson - Freelance video editor with 5+ years of
+              experience providing professional video editing services for
+              creators, brands, and businesses looking to increase engagement,
+              retention, and conversions.
             </p>
             <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
               <Link
                 href="/contact"
                 className="drop-shadow-xl drop-shadow-accent-hover/25 px-6 py-3 bg-linear-to-br from-accent to-accent-hover hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent hover:text-accent transition duration-200 rounded text-black font-semibold tracking-[1.05] text-lg"
               >
-                REQUEST DEMO
+                FREE SAMPLE EDIT
               </Link>
               <Link
                 href="/portfolio"
                 className=" px-6 py-3 bg-bg-secondary border border-border-secondary rounded text-text-primary font-semibold tracking-[1.05] text-lg"
               >
-                VIEW SHOWREEL
+                WATCH MY WORK
               </Link>
             </div>
           </div>
@@ -97,33 +166,52 @@ export default async function Home() {
                 aria-hidden="true"
                 className="absolute top-0 text-transparent bg-[#DD8AFF]/25 bg-clip-text filter blur-sm opacity-60"
               >
-                WHO I WORK BEST WITH
+                WHO I EDIT VIDEOS FOR
               </span>
-              WHO I WORK BEST WITH
+              WHO I EDIT VIDEOS FOR
             </h2>
             <div className="h-1 bg-linear-to-br from-accent to-[#DD8AFF] w-24 rounded mt-4" />
 
             <p className="max-w-xl text-text-muted mt-4">
-              Feedback from those who trusted my vision. Feedback from those who
-              trusted my vision. Feedback from those who trusted my vision.
-              Feedback from those who trusted my vision.
+              I work with creators and brands who understand that video is more
+              than content- it&apos;s a growth tool. Every edit is built to
+              increase watch time, retention, and conversions.
             </p>
 
             <div className="bg-bg-secondary border border-border-primary rounded p-4 space-y-4 mt-4">
               <p className="font-bold text-lg text-[#DD8AFF]">NOT FOR:</p>
               <ul className="text-text-muted max-w-xl space-y-3">
-                <li>✖ One-off cheap edits</li>
-                <li>✖ No direction or unclear goals</li>
-                <li>✖ Expecting “viral” without strategy</li>
+                <li>
+                  {" "}
+                  <span className="text-[#DD8AFF]">✖ </span>Cheap, one-off edits
+                  with no long-term vision
+                </li>
+                <li>
+                  <span className="text-[#DD8AFF]">✖</span> Clients without a
+                  clear content strategy
+                </li>
+                <li>
+                  <span className="text-[#DD8AFF]">✖</span> People chasing
+                  “viral” instead of sustainable growth
+                </li>
               </ul>
             </div>
 
             <div className="bg-bg-secondary border border-border-primary rounded p-4 space-y-4 mt-4">
               <p className="font-bold text-lg text-accent">BEST FOR:</p>
               <ul className="text-text-muted max-w-xl space-y-3">
-                <li>✔ Creators posting consistently (not once a month)</li>
-                <li>✔ Brands investing in content, not testing it</li>
-                <li>✔ People who care about retention, not just aesthetics</li>
+                <li>
+                  <span className="text-accent">✔</span> Creators serious about
+                  growing on YouTube, TikTok, or Instagram
+                </li>
+                <li>
+                  <span className="text-accent">✔</span> Brands investing in
+                  consistent, high-quality video content
+                </li>
+                <li>
+                  <span className="text-accent">✔</span> Businesses that want
+                  videos that convert viewers into customers
+                </li>
               </ul>
             </div>
 
@@ -132,13 +220,13 @@ export default async function Home() {
                 href="/contact"
                 className="w-fit drop-shadow-xl drop-shadow-accent-hover/25 px-6 py-3 bg-linear-to-br from-accent to-accent-hover hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent hover:text-accent transition duration-200 rounded text-black font-semibold tracking-[1.05] text-lg"
               >
-                REQUEST DEMO
+                FREE SAMPLE EDIT
               </Link>
               <Link
                 href="/portfolio"
                 className="w-fit px-6 py-3 bg-bg-secondary border border-border-secondary rounded text-text-primary font-semibold tracking-[1.05] text-lg"
               >
-                VIEW SHOWREEL
+                SEE WORK
               </Link>
             </div>
           </div>
@@ -146,7 +234,7 @@ export default async function Home() {
             <div className="relative lg:col-span-2">
               <Image
                 src="/heroImg.png"
-                alt="Name Named - Professional Video Editor"
+                alt="Jeremiah Jackson - Professional Video Editor"
                 fill
                 className="object-cover rounded"
               />
@@ -154,7 +242,7 @@ export default async function Home() {
             <div className="relative hidden lg:block">
               <Image
                 src="/heroImg.png"
-                alt="Name Named - Professional Video Editor"
+                alt="Jeremiah Jackson - Professional video editor creating high-quality content for brands and creators"
                 fill
                 className="object-cover rounded"
               />
@@ -162,7 +250,7 @@ export default async function Home() {
             <div className="relative hidden lg:block">
               <Image
                 src="/heroImg.png"
-                alt="Name Named - Professional Video Editor"
+                alt="Professional video editor creating high-quality content for brands and creators"
                 fill
                 className="object-cover rounded"
               />
@@ -172,23 +260,23 @@ export default async function Home() {
 
         <section className="px-4 lg:px-12 xl:px-24 py-24 bg-linear-to-br from-bg-primary to-bg-secondary border border-border-primary">
           <h2
-            className="text-3xl lg:text-5xl max-w-xl font-bold relative"
+            className="text-3xl lg:text-5xl max-w-2xl font-bold relative"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             <span
               aria-hidden="true"
               className="absolute top-0 text-transparent bg-[#DD8AFF]/25 bg-clip-text filter blur-sm opacity-100"
             >
-              FEATURED EDITS
+              VIDEO EDITING PORTFOLIO & CLIENT WORK
             </span>
-            FEATURED EDITS
+            VIDEO EDITING PORTFOLIO & CLIENT WORK
           </h2>
           <div className="h-1 bg-linear-to-br from-accent to-[#DD8AFF] w-24 rounded mt-4" />
 
           <p className="max-w-xl text-text-muted tracking-[1.05] mt-4">
-            Name Named - Video editor with 5+ years of experience. Crafting
-            cinematic stories that drive results for creators and top-tier
-            brands.
+            A selection of high-performing video edits designed to increase
+            engagement, boost retention, and elevate brand presence across
+            social media and digital platforms.
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12 mt-20">
             {featuredEdits.map((edit, index) => (
@@ -234,14 +322,15 @@ export default async function Home() {
               aria-hidden="true"
               className="absolute top-0 text-transparent bg-[#DD8AFF]/25 bg-clip-text filter blur-sm opacity-100"
             >
-              CLIENT TESTIMONIALS
+              RESULTS FROM CLIENTS I&apos;VE WORKED WITH
             </span>
-            CLIENT TESTIMONIALS
+            RESULTS FROM CLIENTS I&apos;VE WORKED WITH
           </h2>
           <div className="h-1 bg-linear-to-br from-accent to-[#DD8AFF] w-24 rounded mt-4" />
 
           <p className="max-w-xl  text-text-muted mt-4">
-            Feedback from those who trusted my vision.
+            Feedback from creators and brands who&apos;ve used my video editing
+            services to grow their audience and improve content performance.
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-20">
@@ -290,28 +379,38 @@ export default async function Home() {
                 aria-hidden="true"
                 className="absolute top-0 text-transparent bg-[#DD8AFF]/25 bg-clip-text filter blur-sm opacity-60"
               >
-                CREATING EDITS SINCE 2021
+                RESULT-FOCUSED VIDEO EDITING SINCE 2021
               </span>
-              CREATING EDITS SINCE 2021
+              RESULT-FOCUSED VIDEO EDITING SINCE 2021
             </h2>
             <div className="h-1 bg-linear-to-br from-accent to-[#DD8AFF] w-24 rounded mt-4" />
 
             <p className="max-w-xl text-text-muted mt-4">
-              Feedback from those who trusted my vision. Feedback from those who
-              trusted my vision. Feedback from those who trusted my vision.
-              Feedback from those who trusted my vision.
+              Since 2021, I&apos;ve helped creators and brands transform raw
+              footage into high-performing content. My editing approach combines
+              storytelling, pacing, and platform-specific strategies to maximize
+              engagement and conversions.
             </p>
             <ul className="text-text-muted max-w-xl mt-4 space-y-3">
-              <li>- BP 1</li>
-              <li>- BP 2</li>
-              <li>- BP 3</li>
+              <li>
+                <span className="text-accent">✔</span> Strategic editing for
+                YouTube, TikTok, and Instagram
+              </li>
+              <li>
+                <span className="text-accent">✔</span> Focus on audience
+                retention and watch time
+              </li>
+              <li>
+                <span className="text-accent">✔</span> Fast turnaround and
+                consistent delivery
+              </li>
             </ul>
-            <div className="flex flex-col sm:flex-row gap-8 mt-auto">
+            <div className="flex flex-col sm:flex-row gap-8 mt-12 lg:mt-auto">
               <Link
                 href="/contact"
                 className="w-fit drop-shadow-xl drop-shadow-accent-hover/25 px-6 py-3 bg-linear-to-br from-accent to-accent-hover hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent hover:text-accent transition duration-200 rounded text-black font-semibold tracking-[1.05] text-lg"
               >
-                REQUEST DEMO
+                FREE SAMPLE EDIT
               </Link>
               <Link
                 href="/portfolio"
@@ -336,29 +435,29 @@ export default async function Home() {
             className="text-3xl lg:text-7xl max-w-xl mx-auto font-bold text-center relative"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            READY TO
+            STOP LOSING VIEWS,
             <br />
             <span className="relative bg-linear-to-br from-accent to-[#DD8AFF] bg-clip-text text-transparent">
-              CRAFT YOUR NEXT VIDEO?
+              START GROWING WITH BETTER EDITING
             </span>
           </h2>
           <p className="max-w-xl mx-auto text-center text-text-muted tracking-[1.05]">
-            Name Named - Video editor with 5+ years of experience. Crafting
-            cinematic stories that drive results for creators and top-tier
-            brands.
+            If you&apos;re serious about growing your brand or content,
+            let&apos;s create videos that actually perform. Get a free sample
+            edit and see the difference.
           </p>
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
             <Link
               href="/contact"
               className="drop-shadow-md drop-shadow-accent-hover/25 px-6 py-3 bg-linear-to-br from-accent to-accent-hover hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent hover:text-accent transition duration-200 rounded text-black font-semibold tracking-[1.05] text-lg"
             >
-              REQUEST DEMO
+              GET A FREE SAMPLE EDIT
             </Link>
             <Link
               href="/portfolio"
               className=" px-6 py-3 bg-bg-secondary border border-border-secondary rounded text-text-primary font-semibold tracking-[1.05] text-lg"
             >
-              VIEW SHOWREEL
+              WATCH MY WORK
             </Link>
           </div>
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-center text-text-muted font-semibold tracking-[1.05]">

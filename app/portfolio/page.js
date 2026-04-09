@@ -4,6 +4,82 @@ import { getPortfolioPageData } from "../_lib/services";
 import Projects from "../_components/Projects";
 import Footer from "../_components/Footer";
 
+const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://video-editor-website.vercel.app"
+    : "http://localhost:3000";
+
+export const metadata = {
+  title: "Portfolio | Jeremiah Jackson - Professional Video Editor",
+  description:
+    "Explore Jeremiah Jackson's portfolio of high-performing video edits for YouTube, TikTok, and Instagram. See how cinematic storytelling, pacing, and engagement-focused edits drive retention and conversions.",
+  keywords: [
+    "Video Editing Portfolio",
+    "Jeremiah Jackson",
+    "YouTube Video Editing",
+    "TikTok Video Editing",
+    "Instagram Video Editing",
+    "Social Media Video Editing",
+    "High-Impact Editing",
+    "Content Growth",
+    "Brand Video Production",
+    "Professional Video Editor",
+  ],
+  authors: [
+    {
+      name: "Jeremiah Jackson",
+      url: BASE_URL,
+    },
+  ],
+  creator: "Jeremiah Jackson",
+  publisher: "Jeremiah Jackson",
+  openGraph: {
+    title: "Portfolio | Jeremiah Jackson - Professional Video Editor",
+    description:
+      "A curated selection of high-performing video edits designed to increase engagement, watch time, and conversions across YouTube, TikTok, and Instagram.",
+    url: BASE_URL + "/portfolio",
+    siteName: "Jeremiah Jackson Video Editing",
+    images: [
+      {
+        url: BASE_URL + "/heroImg.png",
+        width: 1200,
+        height: 630,
+        alt: "Jeremiah Jackson - Portfolio of High-Performing Video Edits",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Portfolio | Jeremiah Jackson - Professional Video Editor",
+    description:
+      "View high-impact video editing projects for YouTube, TikTok, and Instagram. See edits designed to boost retention, engagement, and conversions.",
+    creator: "@JeremiahJackson",
+    images: [
+      {
+        url: BASE_URL + "/heroImg.png",
+        alt: "Jeremiah Jackson - Portfolio of High-Performing Video Edits",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+  },
+  alternates: {
+    canonical: BASE_URL + "/portfolio",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
+  },
+};
+
 export default async function Page() {
   const { error, data } = await getPortfolioPageData();
 
@@ -38,17 +114,17 @@ export default async function Page() {
           />
           <div className="z-10 relative space-y-8 px-4 lg:px-12 xl:px-24 col-span-2">
             <h1
-              className="text-3xl md:text-8xl font-bold relative"
+              className="text-4xl lg:text-7xl font-bold relative"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               <span
                 aria-hidden="true"
                 className="absolute top-0 text-transparent bg-accent-hover/25 bg-clip-text filter blur-sm opacity-60"
               >
-                SELECTED
+                HIGH-PERFORMING
               </span>
 
-              <span className="text-text-primary">SELECTED</span>
+              <span className="text-text-primary">HIGH-PERFORMING</span>
 
               <br />
 
@@ -57,18 +133,20 @@ export default async function Page() {
                   aria-hidden="true"
                   className="absolute top-1 lg:top-5 text-transparent bg-linear-to-br from-accent/50 to-[#DD8AFF]/50 bg-clip-text filter blur-sm opacity-60"
                 >
-                  PROJECTS
+                  VIDEO EDITING PROJECTS
                 </span>
 
                 <span className="relative bg-linear-to-br from-accent to-[#DD8AFF] bg-clip-text text-transparent">
-                  PROJECTS
+                  VIDEO EDITING PROJECTS
                 </span>
               </span>
             </h1>
             <p className="max-w-xl text-text-muted tracking-[1.05]">
-              Name Named - Video editor with 5+ years of experience. Crafting
-              cinematic stories that drive results for creators and top-tier
-              brands.
+              A collection of professional video editing work focused on
+              increasing engagement, watch time, and conversions across YouTube,
+              TikTok, and Instagram. Each project is edited with a focus on hook
+              strength, pacing, and retention-so you&apos;re not just watching
+              edits, you&apos;re seeing what drives performance.
             </p>
           </div>
         </section>
@@ -80,23 +158,23 @@ export default async function Page() {
             className="text-3xl lg:text-7xl max-w-xl mx-auto font-bold text-center relative"
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            HAVE A
+            YOUR VIDEOS COULD BE
             <br />
             <span className="relative bg-linear-to-br from-accent to-[#DD8AFF] bg-clip-text text-transparent">
-              VISION?
+              DOING MORE
             </span>
           </h2>
           <p className="max-w-xl mx-auto text-center text-text-muted tracking-[1.05]">
-            Name Named - Video editor with 5+ years of experience. Crafting
-            cinematic stories that drive results for creators and top-tier
-            brands.
+            If you&apos;re serious about growing your brand or content,
+            let&apos;s create videos that actually perform. Get a free sample
+            edit and see the difference.
           </p>
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-center">
             <Link
               href="/contact"
               className="drop-shadow-xl drop-shadow-accent-hover/25 px-6 py-3 bg-linear-to-br from-accent to-accent-hover hover:from-accent-hover/20 hover:to-accent-hover/20 border border-accent hover:text-accent transition duration-200 rounded text-black font-semibold tracking-[1.05] text-lg"
             >
-              REQUEST DEMO
+              GET A FREE SAMPLE EDIT
             </Link>
           </div>
           <div className="flex flex-col lg:flex-row gap-8 items-center justify-center text-text-muted font-semibold tracking-[1.05]">
